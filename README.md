@@ -61,7 +61,5 @@ de la aplicación.
 
 <div id='webgrafia' />
 - [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide)
-
 - [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/)
-
 - []()
