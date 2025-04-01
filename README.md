@@ -7,20 +7,20 @@ Este fichero es una guía detallada de cómo instalar las herramientas necesaria
 
 # Índice
 
-- ## [Instalación](#descripción)
+- ## [Instalación](#instalación)
   - ### [Requisitos previos](#requisitos)
-    - #### [Intalación de Python](#python)
+    - #### [Instalación de requisitos previos](#instalacion-previos)
     - #### [Intalación de Django](#python)
     - #### [Intalación de Whitenise](#python)
-  - ### [Requisitos previos](#requisitos)
+  - ### [placeholder](#placeholder)
     - #### [placeholder](#placeholder)
       - ##### [placeholder](#placeholder)
         - ###### [placeholder](#placeholder)
+- ## [placeholder](#placeholder)
+- ## [placeholder](#placeholder)
 - ## [Comandos utilizados](#comandos)
   - ### [Comandosde de git](#comandos-git)
-- ## [placeholder](#placeholder)
-- ## [placeholder](#placeholder)
-- ## [placeholder](#placeholder)
+- ## [Webgrafia](#webgrafia)
 
 ## Instalación
 
@@ -30,13 +30,11 @@ Para poder crear cualquier proyecto usando Django y Python primero tenemos que i
 [documentación oficial de Python](https://wiki.python.org/moin/BeginnersGuide/Download) se encuentran las
 guías detalladas de cómo instalar python dependiendo de tu sistema operativo.
 
-## Uso
+#### Instalación de requisitos previos
+Para la instalación de los modulos necesarios tenemos que ejecutar el siguiente comando `pip3 install -r requirements.txt ` dentro del fichero se encuentran todos
+los modulos necesarios para que esta aplicación funcione.
 
-## Instrucciones para ejecutar la aplicación.
-
-## Contribución
-
-Cómo colaborar en el desarrollo del proyecto.
+---
 
 ## Comandos utilizados
 
@@ -50,3 +48,10 @@ Cómo colaborar en el desarrollo del proyecto.
 > `git commit -m "Descripción breve de los cambios" ` Crea un commit con los archivos añadidos\
 > `git branch` Para saber en qué rama estás\
 > `git push origin <nombre-de-la-rama> ` Envia los cambios al repo remoto\
+
+---
+
+## Webgrafía
+- [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide)
+- [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/)
+- []()
