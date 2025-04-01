@@ -31,8 +31,10 @@ Para poder crear cualquier proyecto usando Django y Python primero tenemos que i
 guías detalladas de cómo instalar python dependiendo de tu sistema operativo.
 
 #### Instalación de requisitos previos
-Para la instalación de los modulos necesarios tenemos que ejecutar el siguiente comando `pip3 install -r requirements.txt ` dentro del fichero se encuentran todos
-los modulos necesarios para que esta aplicación funcione.
+Para la instalación de los modulos necesarios abre una terminal en la **carpeta**
+**raíz del proyecto** y ejecuta el comando `pip3 install -r requirements.txt ` Dentro del fichero se encuentran todos los modulos necesarios para que esta aplicación funcione.
+Esta instalación de los modulos es necesaria tanto en desarrollo como producción
+de la aplicación.
 
 ---
 
