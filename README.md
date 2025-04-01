@@ -21,12 +21,11 @@ Este fichero es una guía detallada de cómo instalar las herramientas necesaria
 - ## [placeholder](#placeholder)
 - ## [Comandos utilizados](#comandos)
   - ### [Comandosde de git](#comandos-git)
-- ## [Webgrafia](#webgrafia)
+- ## [Webgrafia](#docs)
 
 <div id='install' />
 
 ## Instalación
-
 
 ### Requisitos previos
 
@@ -58,10 +57,10 @@ de la aplicación.
 
 ---
 
-<div id='webgrafia' />
+<div id='docs' />
 
 ## Webgrafía
 
-* [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide)
-* [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/)
-* []()
+- [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide)
+- [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/)
+- []()
