@@ -23,6 +23,7 @@ Este fichero es una guía detallada de cómo instalar las herramientas necesaria
 - ## [Webgrafia](#webgrafia)
 
 ## Instalación
+
 <div id='install' />
 
 ### Requisitos previos
@@ -32,6 +33,7 @@ Para poder crear cualquier proyecto usando Django y Python primero tenemos que i
 guías detalladas de cómo instalar python dependiendo de tu sistema operativo.
 
 #### Instalación de requisitos previos
+
 Para la instalación de los modulos necesarios abre una terminal en la **carpeta**
 **raíz del proyecto** y ejecuta el comando `pip3 install -r requirements.txt ` Dentro del fichero se encuentran todos los modulos necesarios para que esta aplicación funcione.
 Esta instalación de los modulos es necesaria tanto en desarrollo como producción
@@ -55,7 +57,8 @@ de la aplicación.
 ---
 
 ## Webgrafía
+
 <div id='webgrafia' />
-- [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide)
-- [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/)
+- [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide)\
+- [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/)\
 - []()
