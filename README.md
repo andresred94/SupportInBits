@@ -7,9 +7,9 @@ Este fichero es una guía detallada de cómo instalar las herramientas necesaria
 
 # Índice
 
-- ## [Instalación](#instalación)
-  - ### [Requisitos previos](#requisitos)
-    - #### [Instalación de requisitos previos](#instalacion-previos)
+- ## [Instalación](#install)
+  - ### [Requisitos previos](#requisitos-previos)
+    - #### [Instalación de requisitos previos](#instalacion-de-requisitos-previos)
     - #### [Intalación de Django](#python)
     - #### [Intalación de Whitenise](#python)
   - ### [placeholder](#placeholder)
@@ -23,6 +23,7 @@ Este fichero es una guía detallada de cómo instalar las herramientas necesaria
 - ## [Webgrafia](#webgrafia)
 
 ## Instalación
+<div id='install' />
 
 ### Requisitos previos
 
@@ -54,6 +55,7 @@ de la aplicación.
 ---
 
 ## Webgrafía
+<div id='webgrafia' />
 - [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide)
 - [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/)
 - []()
