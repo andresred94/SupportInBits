@@ -14,29 +14,27 @@ Este fichero es una guía detallada de cómo instalar las herramientas necesaria
         - #### [placeholder](#placeholder) 
              - ##### [placeholder](#placeholder)
                 - ###### [placeholder](#placeholder)
-        
- 
 - ## [Comandos utilizados](#comandos)
     - ### [Comandosde de git](#comandos-git)
 - ## [placeholder](#placeholder)
 - ## [placeholder](#placeholder)
 - ## [placeholder](#placeholder)
 
-## Descripción
-Aquí se describe el propósito del proyecto.
-
 ## Instalación
-Pasos para instalar el proyecto.
+### Requisitos previos
+Para poder crear cualquier proyecto usando Django y Python primero tenemos que intalar python para ello en la
+[documentación oficial de Python](#https://wiki.python.org/moin/BeginnersGuide/Download) se encuentran las 
+guías detalladas de cómo instalar python dependiendo de tu sistema operativo. 
 
 ## Uso
 Instrucciones para ejecutar la aplicación.
-
+-
 ## Contribución
 Cómo colaborar en el desarrollo del proyecto.
 
 ## Comandos utilizados
 ### comandos de git
-> - `git fetch origin` Descarga cambios sin modificar archivos\
+> `git fetch origin` Descarga cambios sin modificar archivos\
 > `git merge origin/main` Fusiona cambios en tu rama (reemplaza "main" por tu rama)\
 > `git pull origin main` Descarga y fusiona cambios (reemplaza "main" por tu rama)\
 > `git status` Comprueba los archivos modificados\
