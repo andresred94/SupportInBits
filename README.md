@@ -1,6 +1,7 @@
 # SuppportInBits - TFG 2º DAW.
 
-**autor: Andres Martin Bravo Castro**\
+**autor: Andres Martin Bravo Castro**
+
 **version(Pre-Alfa): 0.0.0**
 
 Este fichero es una guía detallada de cómo instalar las herramientas necesarias para crear y desplegar una aplicación web hecha con el framework Django de Python.
@@ -59,6 +60,8 @@ de la aplicación.
 ## Webgrafía
 
 <div id='webgrafia' />
-- [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide) \
-- [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/) \
+- [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide)
+
+- [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/)
+
 - []()
