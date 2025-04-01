@@ -36,8 +36,11 @@ Cómo colaborar en el desarrollo del proyecto.
 
 ## Comandos utilizados
 ### comandos de git
-> `git fetch origin` Descarga cambios sin modificar archivos
-> `git merge origin/main` Fusiona cambios en tu rama (reemplaza "main" por tu rama)
-> `git pull origin main` Descarga y fusiona cambios (reemplaza "main" por tu rama)
-> `git status` Comprueba los archivos modificados
-> `git add .` Añade todos los archivos modificados
+> - `git fetch origin` Descarga cambios sin modificar archivos\
+> `git merge origin/main` Fusiona cambios en tu rama (reemplaza "main" por tu rama)\
+> `git pull origin main` Descarga y fusiona cambios (reemplaza "main" por tu rama)\
+> `git status` Comprueba los archivos modificados\
+> `git add .` Añade todos los archivos modificados\
+> `git commit -m "Descripción breve de los cambios" ` Crea un commit con los archivos añadidos\
+> `git branch` Para saber en qué rama estás\
+> `git push origin <nombre-de-la-rama> ` Envia los cambios al repo remoto\
