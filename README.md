@@ -68,6 +68,11 @@ entorno virtual, para tener todo mejor organizado creamos una carpeta llamda
 El entorno virtual se crea una vez con el comando `python3 -m venv ~/entornos/{nombre_app}`una vez creado el entorno para activarlo ejecutamos el comando 
 `source ~/entornos/{nombre_app}/bin/activate`. ~~Para desactivarlo tenemos que~~~~ejecutar el comando **exit** y volver a inciar sesión.~~
 
+## 5.2 [ instalar gunicorn ]
+
+## 5.2.1 configurar unicorn
+
+modificar el fichero /etc/systemd/system/gunicorn.service
 
 
 --- 

@@ -56,3 +56,6 @@
 <div id='cmd-server' />
 
 > `sudo systemctl stop nginx.service ` detiene el servidor nginx
+> `sudo systemctl daemon-reload`
+> `sudo systemctl restart gunicorn`
+> `sudo systemctl restart nginx`
