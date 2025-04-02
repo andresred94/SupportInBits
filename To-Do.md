@@ -7,4 +7,5 @@
 * [] tittle, meta description de las paginas (buscar más propiedades SEO) 
 * [] implementar blog
 * [] implementar foro 
+* [X] ~~implementar vista error 404~~
 * [X] ~~arreglar el boton de hamburguesa~~
