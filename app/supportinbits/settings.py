@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog.apps.BlogConfig',
+    'page.apps.PageConfig',
+    'user.apps.UserConfig'
 ]
 
 MIDDLEWARE = [
@@ -77,6 +80,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'mongodb': {  # MongoDB para posts del blog
+        'ENGINE': 'djongo',
+        'NAME': 'blog_db',
+        'CLIENT': {
+            'host': 'localhost',
+            'port': 27017,
+            'authSource': 'admin',
+        }
     }
 }
 

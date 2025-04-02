@@ -31,6 +31,8 @@ Para poder crear cualquier proyecto usando Django y Python primero tenemos que i
 [documentación oficial de Python](https://wiki.python.org/moin/BeginnersGuide/Download) se encuentran las
 guías detalladas de cómo instalar python dependiendo de tu sistema operativo.
 
+**NOTA: cuando instales python asegurate de marcar la opción "anádir al PAth"**
+
 <div id='install-req' />
 
 #### Instalación de requisitos previos

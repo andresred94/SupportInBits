@@ -3,9 +3,12 @@
   - ### [Comandos de python](#cmd-python)
 
 --- 
+
 <div id='all-cmd' />
 
 ## Comandos utilizados
+
+--- 
 
 <div id='cmd-git' />
 
@@ -24,6 +27,9 @@
 > `git checkout -b nombre-de-la-rama` crea una rama y te cambia a esa rama\
 > `git switch -c nombre-de-la-rama` en git > 2.23 cambia a la rama indicada\
 > `git checkout nombre-de-la-rama` cambia a la rama indicada\
+> `git merge nombre-de-la-rama` fusiona la rama que 
+
+--- 
 
 ### comandos de python
 <div id='cmd-python' />
@@ -32,3 +38,12 @@
 > `py -m pip install mysql-connector-python` descarga e instala el  conector de MySQL\
 > `py install django-bootstrap-v5` comando para instalar BootStrap\
 > `pip3 install -r requirements.txt` para instalar dependencias\
+> `python manage.py migrate --database=nombre_baseDdatos` Para MongoDB (si usas Djongo)\
+
+--- 
+
+### comandos de django
+<div id='cmd-python' />
+
+> `python manage.py startapp {nombre de la pp}` crea una app en tu proyecto en Windows\
+> `python3 manage.py startapp {nombre de la pp}` crea una app en tu proyecto en Windows\
