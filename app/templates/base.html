@@ -1,0 +1,48 @@
+{% load static %}
+{% load bootstrap5 %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{ page.descri }}" />
+    {% bootstrap_css %} <!-- CSS de Bootstrap -->
+    {% bootstrap_javascript %} <!-- JS de Bootstrap -->
+    {% block extra_css %} {% endblock%}
+    <link rel="stylesheet" href="{% static 'supportinbits/css/global.css' %}" />   
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <title>{% block titulo %}Mi Sitio Web{% endblock %}</title>
+  </head>
+  <body>
+    <!--encabezado-->
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col border">
+            Esto es el header
+          </div>
+        </div>
+      </div>
+    </header>
+    <!--contenido-->
+    <div class="container">
+      <div class="row">
+        {% block content %} {% endblock %}
+
+      </div>
+    </div>
+    <!--footer-->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col border">
+            Esto es el footer
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
