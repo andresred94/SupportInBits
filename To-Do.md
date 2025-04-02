@@ -4,4 +4,6 @@
 * [X] ~~buscar la manera de servir archivos css y js~~
 * [] implementar breadcrumps en la web dinámico 
 * [] implementar un inicio de sesión 
-* []  
+* [] tittle, meta description de las paginas (buscar más propiedades SEO) 
+* [] implementar blog
+* [] implementar foro 

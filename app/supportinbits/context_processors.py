@@ -1,7 +1,10 @@
 def breadcrumbs(request):
     # Puedes definir tus breadcrumbs basados en la URL
     path = request.path_info.split('/')
-    breadcrumbs = [{'name': 'Inicio', 'url': '/'}]
+    breadcrumbs = [{
+        'name': 'Inicio', 'url': '',
+        'name': 'Cookies', 'url': 'Cookies',
+    }]
     
     # Lógica para construir breadcrumbs dinámicos
     url_accum = ''
