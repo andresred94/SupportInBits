@@ -9,6 +9,12 @@ def home(request):
         # context={'page': page}  # Enviar la lista de objetos a la plantilla
     )
 
+def cookies(request): 
+    return render(
+        request,
+        'cookies.html',
+    )
+
 def quien_soy(request):
     return render(
         request,

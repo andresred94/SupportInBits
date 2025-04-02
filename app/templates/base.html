@@ -27,6 +27,22 @@
         </div>
       </div>
     </header>
+    <!--breadcrumps-->
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% for breadcrumb in breadcrumbs %}
+                <li class="breadcrumb-item{% if forloop.last %} active{% endif %}" {% if forloop.last %}aria-current="page"{% endif %}>
+                    {% if not forloop.last %}
+                        <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a>
+                    {% else %}
+                        {{ breadcrumb.name }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+      </nav>
+    </div>
     <!--contenido-->
     <div class="container">
       <div class="row">
@@ -35,14 +51,17 @@
       </div>
     </div>
     <!--footer-->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col border">
-            Esto es el footer
-          </div>
-        </div>
-      </div>
-    </footer>
+    <div class="container">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="./" class="nav-link px-2 text-body-secondary">Inicio</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Politicas de privacidad</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Acerca de nosotros</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+          <li class="nav-item"><a href="cookies" class="nav-link px-2 text-body-secondary">Cookies</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2025 SupportInBits, Inc</p>
+      </footer>
+    </div>
   </body>
 </html>

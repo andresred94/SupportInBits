@@ -1,5 +1,7 @@
 * [] buscar la manera de implementar TinyMCE
-* [] buscar la manera de implementar MongoDB con Django 
+* [] buscar la manera de implementar MongoDB Y SQLite3 con Django 
 * [X] ~~buscar la manera de instalar bootstrap en templates~~ `py install django-bootstrap-v5`
 * [X] ~~buscar la manera de servir archivos css y js~~
+* [] implementar breadcrumps en la web dinámico 
+* [] implementar un inicio de sesión 
 * []  
