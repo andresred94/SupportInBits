@@ -40,6 +40,8 @@
 > `pip3 install -r requirements.txt` para instalar dependencias\
 > `python manage.py migrate --database=nombre_baseDdatos` Para MongoDB (si usas Djongo)\
 > `pip install django-breadcrumbs` instala migas de pan de bootstrap\
+> `python manage.py collectstatic` coleccionar archivos estáticos
+
 --- 
 
 ### comandos de django

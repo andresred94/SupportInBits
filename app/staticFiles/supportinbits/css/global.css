@@ -2,8 +2,18 @@
     padding: 0;
     margin: 0;
 }
-/**/
+/*header*/
+nav{
+    .icon-hamburguesa{
+        border: solid blue;
+    }
+    span{
+        color: black;
+    }
+}
+/*body*/
 #contenido{
     font-family: Georgia, 'Times New Roman', Times, serif;
-    border: solid blue;
+    /* border: solid blue; */
 }
+
