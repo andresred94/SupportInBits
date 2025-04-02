@@ -2,7 +2,7 @@
 
 **autor: Andres Martin Bravo Castro**
 
-**version(Pre-Alfa): 0.0.0**
+**version(Pre-Alfa): 0.0.1**
 
 Este fichero es una guía detallada de cómo instalar las herramientas necesarias para instalar, desarrollar y desplegar una aplicación web hecha con el framework Django de Python.
 
