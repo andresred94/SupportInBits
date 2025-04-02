@@ -60,6 +60,16 @@ En Linux `python3 manage.py runserver `
 Para desplegar la aplicación web en AWD tenemos que tener una instancia de
 EC2 en nuestra cuenta de AWS. Una vez que tengamos acceso y podamos acceder al servidor en remoto podemos empezar a desplegar la web. 
 
+Lo primero que tenemos que hacer es clonar el repositorio en nuestro servidor.
+para ello ejecutamos el comando `git clone https://{clave_token_github_ghp...}@github.com/{nombre_usuario}/{nombre_repo}`. Lo siguiente será crear nuestro
+entorno virtual, para tener todo mejor organizado creamos una carpeta llamda
+"entornos" dentro de estar carpetas crearemos todos los entornos virtuales.
+
+El entorno virtual se crea una vez con el comando `python3 -m venv ~/entornos/{nombre_app}`una vez creado el entorno para activarlo ejecutamos el comando 
+`source ~/entornos/{nombre_app}/bin/activate`. ~~Para desactivarlo tenemos que~~~~ejecutar el comando **exit** y volver a inciar sesión.~~
+
+
+
 --- 
 
 <div id='docs' />

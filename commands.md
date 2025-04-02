@@ -49,3 +49,10 @@
 
 > `python manage.py startapp {nombre de la pp}` crea una app en tu proyecto en Windows\
 > `python3 manage.py startapp {nombre de la pp}` crea una app en tu proyecto en Linux\
+
+--- 
+
+### comandos de ubuntu server
+<div id='cmd-server' />
+
+> `sudo systemctl stop nginx.service ` detiene el servidor nginx
