@@ -36,7 +36,7 @@
 
 > `py manage.py check` comprueba cualquier error en el proyecto\
 > `py -m pip install mysql-connector-python` descarga e instala el  conector de MySQL\
-> `py install django-bootstrap-v5` comando para instalar BootStrap con python\
+> `pip install django-bootstrap-v5` comando para instalar BootStrap con python\
 > `pip3 install -r requirements.txt` para instalar dependencias\
 > `python manage.py migrate --database=nombre_baseDdatos` Para MongoDB (si usas Djongo)\
 > `pip install django-breadcrumbs` instala migas de pan de bootstrap\

@@ -9,3 +9,4 @@
 * [] implementar foro 
 * [X] ~~implementar vista error 404~~
 * [X] ~~arreglar el boton de hamburguesa~~
+* [] resolver problema de url 
