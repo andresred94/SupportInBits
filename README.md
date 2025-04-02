@@ -19,7 +19,7 @@ Este fichero es una guía detallada de cómo instalar las herramientas necesaria
         - ###### [placeholder](#placeholder)
 - ## [placeholder](#placeholder)
 - ## [placeholder](#placeholder)
-- ## [Comandos utilizados](#comandos)
+- ## [Comandos utilizados](#comandos-utilizados)
   - ### [Comandosde de git](#comandos-git)
 - ## [Webgrafia](#docs)
 
@@ -44,7 +44,7 @@ Esta instalación de los modulos es necesaria tanto en desarrollo como producci�
 
 ## Comandos utilizados
 
-### comandos de git
+### comandos de Git
 
 > `git fetch origin` Descarga cambios sin modificar archivos\
 > `git merge origin/main` Fusiona cambios en tu rama (reemplaza "main" por tu rama)\
@@ -54,6 +54,13 @@ Esta instalación de los modulos es necesaria tanto en desarrollo como producci�
 > `git commit -m "Descripción breve de los cambios" ` Crea un commit con los archivos añadidos\
 > `git branch` Para saber en qué rama estás\
 > `git push origin <nombre-de-la-rama> ` Envia los cambios al repo remoto\
+
+### comandos de Python
+
+> `py manage.py check` comprueba cualquier error en el proyecto\
+> `py -m pip install mysql-connector-python` descarga e instala el  conector de MySQL\
+> `py install django-bootstrap-v5` comando para instalar BootStrap\
+> `pip3 install -r requirements.txt` para instalar dependencias\
 
 ---
 
