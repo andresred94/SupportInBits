@@ -48,4 +48,4 @@
 <div id='cmd-python' />
 
 > `python manage.py startapp {nombre de la pp}` crea una app en tu proyecto en Windows\
-> `python3 manage.py startapp {nombre de la pp}` crea una app en tu proyecto en Windows\
+> `python3 manage.py startapp {nombre de la pp}` crea una app en tu proyecto en Linux\

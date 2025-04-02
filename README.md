@@ -68,4 +68,4 @@ EC2 en nuestra cuenta de AWS. Una vez que tengamos acceso y podamos acceder al s
 
 - [Guía para principiantes de Python](https://wiki.python.org/moin/BeginnersGuide)
 - [Guía de instalación de Django](https://docs.djangoproject.com/en/5.1/)
-- []()
+

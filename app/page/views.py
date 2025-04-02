@@ -21,3 +21,8 @@ def quien_soy(request):
         'quien_soy.html',
         # context={'pagina': page}
     )
+def test(request):
+    return render(
+        request,
+        'test.html',
+    )
