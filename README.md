@@ -9,29 +9,32 @@ Este fichero es una guía detallada de cómo instalar las herramientas necesaria
 # Índice
 
 - ## [Instalación](#install)
-  - ### [Requisitos previos](#requisitos-previos)
-    - #### [Instalación de requisitos previos](#instalacion-de-requisitos-previos)
-    - #### [Intalación de Django](#python)
-    - #### [Intalación de Whitenise](#python)
+  - ### [Requisitos previos](#require-prev)
+    - #### [Instalación de requisitos previos](#install-req)
   - ### [placeholder](#placeholder)
     - #### [placeholder](#placeholder)
       - ##### [placeholder](#placeholder)
         - ###### [placeholder](#placeholder)
 - ## [placeholder](#placeholder)
 - ## [placeholder](#placeholder)
-- ## [Comandos utilizados](#comandos-utilizados)
-  - ### [Comandosde de git](#comandos-git)
+- ## [Comandos utilizados](#all-cmd)
+  - ### [Comandos de git](#cmd-git)
+  - ### [Comandos de python](#cmd-python)
 - ## [Webgrafia](#docs)
 
 <div id='install' />
 
 ## Instalación
 
+<div id='require-prev' />
+
 ### Requisitos previos
 
 Para poder crear cualquier proyecto usando Django y Python primero tenemos que intalar python para ello en la
 [documentación oficial de Python](https://wiki.python.org/moin/BeginnersGuide/Download) se encuentran las
 guías detalladas de cómo instalar python dependiendo de tu sistema operativo.
+
+<div id='install-req' />
 
 #### Instalación de requisitos previos
 
@@ -42,9 +45,13 @@ Esta instalación de los modulos es necesaria tanto en desarrollo como producci�
 
 ---
 
+<div id='all-cmd' />
+
 ## Comandos utilizados
 
-### comandos de Git
+<div id='cmd-git' />
+
+### comandos de git
 
 > `git fetch origin` Descarga cambios sin modificar archivos\
 > `git merge origin/main` Fusiona cambios en tu rama (reemplaza "main" por tu rama)\
@@ -55,7 +62,8 @@ Esta instalación de los modulos es necesaria tanto en desarrollo como producci�
 > `git branch` Para saber en qué rama estás\
 > `git push origin <nombre-de-la-rama> ` Envia los cambios al repo remoto\
 
-### comandos de Python
+### comandos de python
+<div id='cmd-python' />
 
 > `py manage.py check` comprueba cualquier error en el proyecto\
 > `py -m pip install mysql-connector-python` descarga e instala el  conector de MySQL\
