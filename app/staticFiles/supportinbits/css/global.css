@@ -1,0 +1,9 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/**/
+#contenido{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: solid blue;
+}
