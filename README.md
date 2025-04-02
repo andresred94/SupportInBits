@@ -4,19 +4,19 @@
 
 **version(Pre-Alfa): 0.0.0**
 
-Este fichero es una guía detallada de cómo instalar las herramientas necesarias para crear y desplegar una aplicación web hecha con el framework Django de Python.
+Este fichero es una guía detallada de cómo instalar las herramientas necesarias para instalar, desarrollar y desplegar una aplicación web hecha con el framework Django de Python.
 
 # Índice
 
 - ## [Instalación](#install)
   - ### [Requisitos previos](#require-prev)
     - #### [Instalación de requisitos previos](#install-req)
+- ## [Despliegue de app](#deploy)
+- ## [Desarrollo de la app](#dev)
   - ### [placeholder](#placeholder)
     - #### [placeholder](#placeholder)
       - ##### [placeholder](#placeholder)
         - ###### [placeholder](#placeholder)
-- ## [placeholder](#placeholder)
-- ## [placeholder](#placeholder)
 - ## [Webgrafia](#docs)
 
 <div id='install' />
@@ -41,6 +41,24 @@ Dentro del fichero se encuentran todos los modulos necesarios para que esta apli
 Esta instalación de los modulos es necesaria tanto en desarrollo como producción de la aplicación.
 
 ---
+
+<div id='dev' />
+
+## Ejecutar la aplicación en modo desarrollo
+Para ejecutar esta aplicación en modo de desarrollo simplemente tenemos que ejecutar el siguiente comando:
+
+En Windows `py manage.py runserver `
+En Linux `python3 manage.py runserver `
+
+---
+
+<div id='deploy' />
+
+## Despliegue de la aplicación en AWS
+Para desplegar la aplicación web en AWD tenemos que tener una instancia de
+EC2 en nuestra cuenta de AWS. Una vez que tengamos acceso y podamos acceder al servidor en remoto podemos empezar a desplegar la web. 
+
+--- 
 
 <div id='docs' />
 
