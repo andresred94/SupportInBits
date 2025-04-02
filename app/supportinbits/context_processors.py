@@ -1,19 +1,41 @@
+from django.urls import resolve, Resolver404
+from django.apps import apps
+
 def breadcrumbs(request):
-    # Puedes definir tus breadcrumbs basados en la URL
-    path = request.path_info.split('/')
-    breadcrumbs = [{
-        'name': 'Inicio', 'url': '',
-        'name': 'Cookies', 'url': 'Cookies',
-    }]
+    breadcrumbs = [{'name': 'Inicio', 'url': '/'}]
     
-    # Lógica para construir breadcrumbs dinámicos
-    url_accum = ''
-    for part in path[1:-1]:
-        if part:
-            url_accum += f'/{part}'
+    try:
+        resolved = resolve(request.path_info)
+        url_name = resolved.url_name
+        
+        # Mapeo de nombres de URL a nombres amigables
+        name_mapping = {
+            '/': 'Inicio',
+            'cookies': 'Cookies',
+            'privacidad': 'Política de Privacidad',
+            'test': 'Pagina de testeo',
+            # Añade más mapeos según necesites
+        }
+        
+        # Si es una URL conocida, usa el nombre mapeado
+        if url_name in name_mapping:
             breadcrumbs.append({
-                'name': part.replace('-', ' ').title(),
-                'url': url_accum
+                'name': name_mapping[url_name],
+                'url': request.path
             })
+        else:
+            # Lógica genérica para URLs no mapeadas
+            path_parts = [p for p in request.path.split('/') if p]
+            current_url = ''
+            
+            for i, part in enumerate(path_parts):
+                current_url += f'/{part}'
+                breadcrumbs.append({
+                    'name': part.replace('-', ' ').title(),
+                    'url': current_url if i < len(path_parts)-1 else None
+                })
+    
+    except Resolver404:
+        pass
     
     return {'breadcrumbs': breadcrumbs}
