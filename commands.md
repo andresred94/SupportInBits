@@ -23,7 +23,7 @@
 > `git checkout nombre-de-la-rama` cambia a la rama\
 > `git checkout -b nombre-de-la-rama` crea una rama y te cambia a esa rama\
 > `git switch -c nombre-de-la-rama` en git > 2.23 cambia a la rama indicada\
-
+> `git checkout nombre-de-la-rama` cambia a la rama indicada\
 
 ### comandos de python
 <div id='cmd-python' />
