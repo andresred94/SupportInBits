@@ -19,6 +19,11 @@
 > `git commit -m "Descripción breve de los cambios" ` Crea un commit con los archivos añadidos\
 > `git branch` Para saber en qué rama estás\
 > `git push origin <nombre-de-la-rama> ` Envia los cambios al repo remoto\
+> `git branch nombre-de-la-rama` crea una rama\
+> `git checkout nombre-de-la-rama` cambia a la rama\
+> `git checkout -b nombre-de-la-rama` crea una rama y te cambia a esa rama\
+> `git switch -c nombre-de-la-rama` en git > 2.23 cambia a la rama indicada\
+
 
 ### comandos de python
 <div id='cmd-python' />
