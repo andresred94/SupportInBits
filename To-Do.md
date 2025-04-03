@@ -2,7 +2,7 @@
 - [] buscar la manera de implementar MongoDB Y SQLite3 con Django
 - [x] ~~buscar la manera de instalar bootstrap en templates~~ `py install django-bootstrap-v5`
 - [x] ~~buscar la manera de servir archivos css y js~~
-- [] implementar breadcrumps en la web dinámico
+- [x] ~~implementar breadcrumps en la web dinámico~~
 - [] implementar un inicio de sesión
 - [] añadir tittle, meta name="description", meta name="robots" content="noindex", meta http-equiv="content-language" content="es" 
 - [] ¿rel="canonical"?¿Qué es?
@@ -12,3 +12,5 @@
 - [x] ~~arreglar el boton de hamburguesa~~
 - [x] ~~resolver problema de url~~
 - [] API de google maps para crear mapa interactivo indicando rampas de accesibilidad
+- [x] ~~implementar registro de cookies con cookies_consent~~
+- [] arreglar las cookies cada vez que se muestra otra vista

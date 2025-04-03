@@ -50,6 +50,8 @@
 
 > `python manage.py startapp {nombre de la pp}` crea una app en tu proyecto en Windows\
 > `python3 manage.py startapp {nombre de la pp}` crea una app en tu proyecto en Linux\
+> `pip install django-cookie-consent` instala el paquete de cookies de django 
+> `$ python manage.py createsuperuser` crea un usuario que se añade a la base de datos SQLite3 
 
 --- 
 

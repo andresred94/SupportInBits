@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i2791=hxsj@57o_q*#wdlp@*6b69y6c1c58)wo8##f7(mu%41f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'page.apps.PageConfig',
     'user.apps.UserConfig',
     'bootstrap5',
+    'cookie_consent',
     
 ]
 
@@ -146,3 +147,20 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cookies
+
+# Configuración de cookies
+COOKIE_CONSENT_NAME = "cookie_consent"
+COOKIE_CONSENT_OPTIONS = {
+    "necessary": {
+        "title": "Cookies necesarias",
+        "description": "Cookies esenciales para el funcionamiento del sitio",
+        "required": True,
+    },
+    "analytics": {
+        "title": "Cookies analíticas",
+        "description": "Cookies para análisis de uso del sitio",
+        "required": False,
+    }
+}
