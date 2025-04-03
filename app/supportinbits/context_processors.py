@@ -12,7 +12,8 @@ def breadcrumbs(request):
         name_mapping = {
             '/': 'Inicio',
             'cookies': 'Cookies',
-            'privacidad': 'Política de Privacidad',
+            'about': 'Quien soy',
+            'politicas': 'Politíca de Privacidad',
             'test': 'Pagina de testeo',
             # Añade más mapeos según necesites
         }
