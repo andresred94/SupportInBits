@@ -1,12 +1,13 @@
-* [] buscar la manera de implementar TinyMCE
-* [] buscar la manera de implementar MongoDB Y SQLite3 con Django 
-* [X] ~~buscar la manera de instalar bootstrap en templates~~ `py install django-bootstrap-v5`
-* [X] ~~buscar la manera de servir archivos css y js~~
-* [] implementar breadcrumps en la web dinámico 
-* [] implementar un inicio de sesión 
-* [] tittle, meta description de las paginas (buscar más propiedades SEO) 
-* [] implementar blog
-* [] implementar foro 
-* [X] ~~implementar vista error 404~~
-* [X] ~~arreglar el boton de hamburguesa~~
-* [] resolver problema de url 
+- [] buscar la manera de implementar TinyMCE
+- [] buscar la manera de implementar MongoDB Y SQLite3 con Django
+- [x] ~~buscar la manera de instalar bootstrap en templates~~ `py install django-bootstrap-v5`
+- [x] ~~buscar la manera de servir archivos css y js~~
+- [] implementar breadcrumps en la web dinámico
+- [] implementar un inicio de sesión
+- [] añadir tittle, meta name="description", meta name="robots" content="noindex", meta http-equiv="content-language" content="es" 
+- [] ¿rel="canonical"?¿Qué es?
+- [] implementar blog
+- [] implementar foro
+- [x] ~~implementar vista error 404~~
+- [x] ~~arreglar el boton de hamburguesa~~
+- [x] ~~resolver problema de url~~
