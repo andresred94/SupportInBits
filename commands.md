@@ -1,6 +1,7 @@
 - ## [Comandos utilizados](#all-cmd)
   - ### [Comandos de git](#cmd-git)
   - ### [Comandos de python](#cmd-python)
+  - ### [Comandos de ubuntu server](#cmd-server)
 
 --- 
 
@@ -55,7 +56,7 @@
 ### comandos de ubuntu server
 <div id='cmd-server' />
 
-> `sudo systemctl stop nginx.service ` detiene el servidor nginx
-> `sudo systemctl daemon-reload`
-> `sudo systemctl restart gunicorn`
-> `sudo systemctl restart nginx`
+> `sudo systemctl stop nginx.service ` detiene el servidor nginx\
+> `sudo systemctl daemon-reload` recarga el daemon de gunicorn\
+> `sudo systemctl restart gunicorn` reinicia el servicio\
+> `sudo systemctl restart nginx`reinicia el servicio\
