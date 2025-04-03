@@ -4,11 +4,11 @@
 - [x] ~~buscar la manera de servir archivos css y js~~
 - [x] ~~implementar breadcrumps en la web dinámico~~
 - [] implementar un inicio de sesión
-- [x]~~tittle~~  
-- [x]~~meta name="description" content=""~~
-- [x]~~meta name="robots" content="noindex"~~
-- [x]~~meta name="HandheldFriendly" content="true"~~
-- [x]~~meta name="MobileOptimized" content="width"~~
+- [x] ~~tittle~~  
+- [x] ~~meta name="description" content=""~~
+- [x] ~~meta name="robots" content="noindex"~~
+- [x] ~~meta name="HandheldFriendly" content="true"~~
+- [x] ~~meta name="MobileOptimized" content="width"~~
 - [] ¿rel="canonical"?¿Qué es?
 - [] implementar blog
 - [] implementar foro
