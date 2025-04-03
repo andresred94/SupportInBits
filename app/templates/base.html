@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{{ page.descri }}" />
     <meta http-equiv="content-language" content="es">
-
-
+    <!-- CSS de Bootstrap -->
+    {% bootstrap_css %}
+    <!-- JS de Bootstrap -->
+    {% bootstrap_javascript %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
     <link rel="stylesheet" href="{% static 'supportinbits/css/global.css' %}" />   
   </head>
@@ -24,6 +26,7 @@
           </a>
         </div>
       </header>
+
       <!-- barra de navegación -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -71,8 +74,9 @@
         </ol>
       </nav>
     </div>
+
     <!--contenido-->
-    <div class="container">
+    <div class="container contenido">
       {% block content %} {% endblock %}
     </div>
     <!--footer-->
@@ -88,10 +92,5 @@
         <p class="text-center text-body-secondary">© 2025 SupportInBits, Inc</p>
       </footer>
     </div>
-
-    <!-- CSS de Bootstrap -->
-    {% bootstrap_css %}
-    <!-- JS de Bootstrap -->
-    {% bootstrap_javascript %}
   </body>
 </html>

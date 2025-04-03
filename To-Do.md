@@ -11,3 +11,4 @@
 - [x] ~~implementar vista error 404~~
 - [x] ~~arreglar el boton de hamburguesa~~
 - [x] ~~resolver problema de url~~
+- [] API de google maps para crear mapa interactivo indicando rampas de accesibilidad
