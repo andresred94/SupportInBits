@@ -1,20 +1,20 @@
-- [] buscar la manera de implementar TinyMCE
-- [] buscar la manera de implementar MongoDB Y SQLite3 con Django
+- [ ] buscar la manera de implementar TinyMCE
+- [ ] buscar la manera de implementar MongoDB Y SQLite3 con Django
 - [x] ~~buscar la manera de instalar bootstrap en templates~~ `py install django-bootstrap-v5`
 - [x] ~~buscar la manera de servir archivos css y js~~
 - [x] ~~implementar breadcrumps en la web dinámico~~
-- [] implementar un inicio de sesión
+- [ ] implementar un inicio de sesión
 - [x] ~~tittle~~  
 - [x] ~~meta name="description" content=""~~
 - [x] ~~meta name="robots" content="noindex"~~
 - [x] ~~meta name="HandheldFriendly" content="true"~~
 - [x] ~~meta name="MobileOptimized" content="width"~~
-- [] ¿rel="canonical"?¿Qué es?
-- [] implementar blog
-- [] implementar foro
+- [ ] ¿rel="canonical"?¿Qué es?
+- [ ] implementar blog
+- [ ] implementar foro
 - [x] ~~implementar vista error 404~~
 - [x] ~~arreglar el boton de hamburguesa~~
 - [x] ~~resolver problema de url~~
-- [] API de google maps para crear mapa interactivo indicando rampas de accesibilidad
+- [ ] API de google maps para crear mapa interactivo indicando rampas de accesibilidad
 - [x] ~~implementar registro de cookies con cookies_consent~~
-- [] arreglar las cookies cada vez que se muestra otra vista
+- [ ] arreglar las cookies cada vez que se muestra otra vista
