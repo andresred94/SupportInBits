@@ -4,10 +4,13 @@
 
 <html lang="en">
   <head>
-    <title>{% block titulo %}Mi Sitio Web{% endblock %}</title>
+    <title>{{ page.titulo }}</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="{{ page.descri }}" />
+    <meta name="description" content="{{ page.m_descri }}" />
+    <meta name="robots" content="{{ page.m_robots }}" />
+    <meta name="HandheldFriendly" content="{{ page.m_handF }}" />
+    <meta name="MobileOptimized" content="{{ page.m_mobileOp }}" />
     <meta http-equiv="content-language" content="es"/>
     <script type="text/javascript" src="{% static 'cookie_consent/cookiebar.js' %}"></script>
     
