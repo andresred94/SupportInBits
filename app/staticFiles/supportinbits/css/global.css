@@ -1,14 +1,18 @@
 /*
-Los estilos de este archivo tienen efecto cuando
-DEBUG = True
-NOTA: realiza siempre collectstatic
+NOTA: siempre que hagas cambios en este archivo realiza un collectstatic
+Esto hará que se copie el contenido exacto en staticFiles
 */
+@font-face {
+  font-family: "fuente-principal";
+  src: url('../fonts/Roboto-Regular.ttf');
+}
 * {
   padding: 0;
   margin: 0;
 }
 
 body {
+  font-family: "fuente-principal", sans-serif;
   .container {
     /*estilos generales de cada page*/
     #contenido-home,
