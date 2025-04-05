@@ -1,8 +1,11 @@
-/*los estilos de este archivo tienen efecto cuando
-DEBUG = TRUE*/
-*{
-    padding: 0;
-    margin: 0;
+/*
+Los estilos de este archivo tienen efecto cuando
+DEBUG = True
+NOTA: realiza siempre collectstatic
+*/
+* {
+  padding: 0;
+  margin: 0;
 }
 
 /* .contenido{
@@ -13,31 +16,45 @@ DEBUG = TRUE*/
 }*/
 
 .cookie-bar {
-    position: fixed;
-    top: 80%;
-    bottom: 0;
-    width: 100%;
-    height: 20%;
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* border: solid blue; */
+  position: fixed;
+  top: 80%;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: solid blue; */
 }
 .cookie-bar a {
-    margin-left: 10px;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
 }
 .cc-cookie-accept {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4caf50;
+  color: white;
 }
 .cc-cookie-decline {
-    background-color: #f44336;
-    color: white;
+  background-color: #f44336;
+  color: white;
+}
+
+.container {
+  #contenido-home {
+    h1 {
+      font-size: 2.6rem;
+    }
+    p {
+      text-align: justify;
+      text-justify: inter-word;
+      margin: 5% 0;
+      font-size: 2.5rem;
+    }
+  }
 }

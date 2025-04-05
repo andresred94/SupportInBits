@@ -1,5 +1,5 @@
 from django.urls import resolve, Resolver404
-from django.apps import apps
+# from django.apps import apps
 
 def breadcrumbs(request):
     breadcrumbs = [{'name': 'Inicio', 'url': '/'}]
@@ -14,6 +14,7 @@ def breadcrumbs(request):
             'cookies': 'Cookies',
             'about': 'Quien soy',
             'politicas': 'Politíca de Privacidad',
+            'faq': 'FAQs',
             'test': 'Pagina de testeo',
             # Añade más mapeos según necesites
         }

@@ -1,5 +1,8 @@
-/*los estilos de este archivo tienen efecto cuando
-DEBUG = TRUE*/
+/*
+Los estilos de este archivo tienen efecto cuando
+DEBUG = False
+NOTA: realiza siempre collectstatic
+*/
 *{
     padding: 0;
     margin: 0;
@@ -40,4 +43,18 @@ DEBUG = TRUE*/
 .cc-cookie-decline {
     background-color: #f44336;
     color: white;
+}
+
+.container{
+    #contenido-home{
+        h1{
+            font-size: 2.6rem;
+        }
+        p{
+/*             border: solid blue;
+ */
+            margin: 5% 0;
+            font-size: 2.5rem;
+        }
+    }
 }

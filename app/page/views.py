@@ -32,9 +32,11 @@ def politicas(request):
     )
 
 def faq(request): 
+    pagina = Page.objects.get(id=5)
     return render(
         request,
         'faq.html',
+        context={'page': pagina}
     )
 
 def test(request):
