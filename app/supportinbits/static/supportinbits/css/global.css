@@ -8,53 +8,49 @@ NOTA: realiza siempre collectstatic
   margin: 0;
 }
 
-/* .contenido{
-    h2{
-        border: solid blue;
-    }
-
-}*/
-
-.cookie-bar {
-  position: fixed;
-  top: 80%;
-  bottom: 0;
-  width: 100%;
-  height: 20%;
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* border: solid blue; */
-}
-.cookie-bar a {
-  margin-left: 10px;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-}
-.cc-cookie-accept {
-  background-color: #4caf50;
-  color: white;
-}
-.cc-cookie-decline {
-  background-color: #f44336;
-  color: white;
-}
-
-.container {
-  #contenido-home {
-    h1 {
-      font-size: 2.6rem;
-    }
-    p {
+body {
+  .container {
+    /*estilos generales de cada page*/
+    #contenido-home,
+    #contenido-privacy,
+    #contenido-about,
+    #contenido-faq,
+    #contenido-cookies {
       text-align: justify;
       text-justify: inter-word;
-      margin: 5% 0;
-      font-size: 2.5rem;
+    }
+    /*estilos individuales de cada page*/
+  }
+
+  /*barra de cookies*/
+  .cookie-bar {
+    position: fixed;
+    top: 80%;
+    bottom: 0;
+    width: 100%;
+    height: 20%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      margin-left: 10px;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cc-cookie-accept {
+      background-color: #4caf50;
+      color: white;
+    }
+    .cc-cookie-decline {
+      background-color: #f44336;
+      color: white;
     }
   }
 }

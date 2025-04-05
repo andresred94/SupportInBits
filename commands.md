@@ -55,6 +55,8 @@
 > `pip install django-cookie-consent` instala el paquete de cookies de django
 > `$ python manage.py createsuperuser` crea un usuario que se añade a la base de datos SQLite3\
 > `pip install django-cookie-consent` instala servicio cookies\
+> `pip install pylint-django` instala pylint-django\
+> `"pylint.args": ["load-plugins=pylint_django"],` añadir esta linea en File > Preferences > Settings para eliminar el error de pylint\
 
 ---
 

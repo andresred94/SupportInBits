@@ -11,11 +11,11 @@ def breadcrumbs(request):
         # Mapeo de nombres de URL a nombres amigables
         name_mapping = {
             '/': 'Inicio',
-            'cookies': 'Cookies',
-            'about': 'Quien soy',
-            'politicas': 'Politíca de Privacidad',
-            'faq': 'FAQs',
-            'test': 'Pagina de testeo',
+            '/cookies-policy': 'Politica de cookies',
+            '/about': 'Quien soy',
+            '/politicas-de-privacidad': 'Politíca de privacidad',
+            '/FAQs': 'FAQs',
+            '/test': 'Pagina de testeo',
             # Añade más mapeos según necesites
         }
         

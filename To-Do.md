@@ -30,4 +30,4 @@
 - [ ] crear un botón para el menú de accesibilidad
 - [ ] Implementar la libreria de Leaflet
 - [ ] crear las plantillas accesibles
-- [ ] 
+- [ ] agregar botón para subir a la parte superior de la página
