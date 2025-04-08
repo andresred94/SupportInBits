@@ -49,4 +49,4 @@ def test(request):
 def getAllPages(request):
     # Los values son los que aparecen en en el modelo
     paginas = Page.objects.all().values('id','titulo','m_descri','m_robots','m_handF','m_mobileOp')
-    return JsonResponse(list(paginas), safe=False)
+    return JsonResponse(list(paginas), safe=False,  content_type="application/json")
