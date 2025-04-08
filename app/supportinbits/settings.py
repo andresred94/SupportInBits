@@ -87,19 +87,21 @@ WSGI_APPLICATION = 'supportinbits.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': {  # MongoDB para posts del blog
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'supportinbits',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',  # O la IP del servidor si es remoto
+        'PORT': '3306',       # Puerto de MySQL (por defecto: 3306)
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # Modo estricto de MySQL
+        }
+    },
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'mongodb': {  # MongoDB para posts del blog
-        'ENGINE': 'djongo',
-        'NAME': 'blog_db',
-        'CLIENT': {
-            'host': 'localhost',
-            'port': 27017,
-            'authSource': 'admin',
-        }
-    }
 }
 
 

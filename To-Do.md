@@ -15,8 +15,9 @@
 
 - [x] ~~resolver problema de url~~
 - [x] ~~implementar registro de cookies con cookies_consent~~
+- [x] ~~Implementar MySQL con Django~~
+- [ ] implementar la conexión con la base de datos en AWS 
 - [ ] buscar la manera de implementar TinyMCE
-- [ ] buscar la manera de implementar MongoDB Y SQLite3 con Django
 - [ ] implementar un inicio de sesión
 - [ ] añadir rel="canonical"
 - [ ] implementar blog

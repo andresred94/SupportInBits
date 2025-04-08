@@ -3,4 +3,21 @@
 
 {% block content %}
 <h1>Page_Test</h1>
+<div id="pages-container"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('/pages/')
+            .then(response => response.json())
+            .then(data => {
+                let html = '';
+                data.forEach(page => {
+                    html += `<p>${page.titulo}</p>`;
+                });
+                document.getElementById('pages-container').innerHTML = html;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+    </script>
+
 {% endblock content%}
