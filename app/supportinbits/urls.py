@@ -20,5 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('page.urls')),
     path('cookies/', include('cookie_consent.urls')),
+    path('blog/', include('blog.urls')),
+    path('tinymce/', include('tinymce.urls')),
 
 ]
