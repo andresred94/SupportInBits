@@ -13,7 +13,11 @@
     <meta name="MobileOptimized" content="{{ page.m_mobileOp }}" />
     <meta http-equiv="content-language" content="es"/>
     <script type="text/javascript" src="{% static 'cookie_consent/cookiebar.js' %}"></script>
-    
+            <!-- TinyMCE CDN -->
+    <script src="https://cdn.tiny.cloud/1/4ctror8ztivyu5cgoasl3ilo4pmcop3kh56f9ezfohvamo05/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <!-- axe-core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.8.2/axe.min.js"></script>
     <!-- CSS de Bootstrap -->
     {% bootstrap_css %}
     <!-- JS de Bootstrap -->
@@ -36,7 +40,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">Inicio</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" aria-label="boton navegador" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
@@ -45,7 +49,7 @@
                 <a class="nav-link active" aria-current="page" href="#">Mi perfil</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Blog</a>
+                <a class="nav-link" href="/blog">Blog</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Foro</a>
@@ -65,7 +69,7 @@
 
     <!--breadcrumps-->
     <div class="container mt-4">
-      <nav aria-label="breadcrumb">
+      <div>
         <ol class="breadcrumb">
             {% for breadcrumb in breadcrumbs %}
                 <li class="breadcrumb-item{% if forloop.last %} active{% endif %}" {% if forloop.last %}aria-current="page"{% endif %}>
@@ -77,12 +81,14 @@
                 </li>
             {% endfor %}
         </ol>
-      </nav>
+      </div>
     </div>
 
     <!--contenido-->
     <div class="container">
-      {% block content %} {% endblock %}
+      <main>
+        {% block content %} {% endblock %}
+      </main>
     </div>
 
     <!--footer-->
@@ -116,6 +122,5 @@
             });
         </script>
     {% endif %} {% endcomment %}
-        
   </body>
 </html>
