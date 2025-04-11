@@ -1,10 +1,17 @@
 from django import forms
-from .models import Post
+from .models import Entrada, Categoria
+from django.core.exceptions import ValidationError
 
-class PostForm(forms.ModelForm):
+class EntradaForm(forms.ModelForm):
     class Meta:
-        model = Post
-        fields = ['title', 'description', 'tags', 'content']
+        model = Entrada
+        fields = ['titulo', 'contenido', 'resumen', 'categoria', 'imagen_portada']
         widgets = {
-            'content': forms.Textarea(attrs={'id': 'editor'}),
+            'contenido': forms.Textarea(attrs={'class': 'tinymce-editor'}),
+            'resumen': forms.Textarea(attrs={'rows': 3}),
         }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['categoria'].queryset = Categoria.objects.all()
+        self.fields['contenido'].required = True

@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{% static 'supportinbits/css/global.css' %}" />   
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="contenedor-pricipal">
       <!--encabezado-->
       <header class="py-3 mb-4 border-bottom">
         <div class="container d-flex flex-wrap justify-content-center">
@@ -68,8 +68,7 @@
     </div>
 
     <!--breadcrumps-->
-    <div class="container mt-4">
-      <div>
+    <nav aria-label="Migas de pan" class="container mt-4">
         <ol class="breadcrumb">
             {% for breadcrumb in breadcrumbs %}
                 <li class="breadcrumb-item{% if forloop.last %} active{% endif %}" {% if forloop.last %}aria-current="page"{% endif %}>
@@ -81,8 +80,7 @@
                 </li>
             {% endfor %}
         </ol>
-      </div>
-    </div>
+    </nav>
 
     <!--contenido-->
     <div class="container">
@@ -110,6 +108,19 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{% static 'cookie_consent/cookiebar.module.js' %}"></script>
 
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          tinymce.init({
+              selector: '.tinymce-editor',
+              plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+              toolbar_mode: 'floating',
+              toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+              height: 400,
+              content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+          });
+      });
+      </script>
+      
 {% comment %}     {% if request|cookie_consent_enabled %}
         <script type="text/javascript">
             $(document).ready(function() {

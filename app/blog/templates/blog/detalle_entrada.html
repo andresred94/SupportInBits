@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <article>
+            <header class="mb-4">
+                <h1 class="fw-bolder mb-1">{{ entrada.titulo }}</h1>
+                <div class="text-muted fst-italic mb-2">
+                    Publicado el {{ entrada.fecha_publicacion|date:"d M Y" }} en 
+                    <a href="{% url 'entradas_por_categoria' slug_categoria=entrada.categoria.slug %}">
+                        {{ entrada.categoria.nombre }}
+                    </a>
+                </div>
+                {% if entrada.imagen_portada %}
+                <figure class="mb-4">
+                    <img class="img-fluid rounded" src="{{ entrada.imagen_portada.url }}" alt="{{ entrada.titulo }}" />
+                </figure>
+                {% endif %}
+            </header>
+            
+            <section class="mb-5">
+                {{ entrada.contenido|safe }}
+            </section>
+        </article>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header">Sobre esta categoría</div>
+            <div class="card-body">
+                <p class="card-text">
+                    Esta entrada pertenece a la categoría 
+                    <strong>{{ entrada.categoria.nombre }}</strong> de la sección 
+                    <strong>{{ entrada.categoria.seccion.nombre }}</strong>.
+                </p>
+                <a href="{% url 'entradas_por_categoria' slug_categoria=entrada.categoria.slug %}" class="btn btn-primary">
+                    Ver más entradas de esta categoría
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

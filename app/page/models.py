@@ -8,7 +8,6 @@ class Page (models.Model):
     m_robots = models.CharField(max_length=255,null=False)
     m_handF = models.CharField(max_length=255, null=True)
     m_mobileOp = models.CharField(max_length=255, null=True)
-    # estilo = models.CharField(max_length=255, null=True, blank=True)
     
     def __str__(self):
-        return self.nombre
+        return self.titulo

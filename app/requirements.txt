@@ -1,3 +1,4 @@
 Django==5.1.7
 WhiteNoise==6.9.0
 Cookie_consent===0.6.0
+MySQLCliente===2.2.7

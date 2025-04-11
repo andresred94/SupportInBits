@@ -16,12 +16,10 @@
 - [x] ~~resolver problema de url~~
 - [x] ~~implementar registro de cookies con cookies_consent~~
 - [x] ~~Implementar MySQL con Django~~
+- [x] ~~implementar blog~~
 - [ ] implementar la conexión con la base de datos en AWS 
 - [ ] buscar la manera de implementar TinyMCE
 - [ ] implementar un inicio de sesión
-- [ ] añadir rel="canonical"
-- [ ] implementar blog
-- [ ] ¿implementar foro?
 - [ ] API de google maps para crear mapa interactivo indicando rampas de accesibilidad
 - [ ] arreglar las cookies cada vez que se muestra otra vista
 - [ ] implementar la API de Google Analytics 
