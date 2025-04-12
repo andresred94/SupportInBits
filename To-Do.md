@@ -18,7 +18,7 @@
 - [x] ~~Implementar MySQL con Django~~
 - [x] ~~implementar blog~~
 - [x] ~~definir una paleta de colores~~
-- [ ] implementar la conexión con la base de datos en AWS 
+- [ ] **implementar la conexión con la base de datos en AWS** 
 - [ ] buscar la manera de implementar TinyMCE
 - [ ] implementar un inicio de sesión
 - [ ] API de google maps para crear mapa interactivo indicando rampas de accesibilidad
@@ -30,3 +30,5 @@
 - [ ] Implementar la libreria de Leaflet
 - [ ] crear las plantillas accesibles
 - [ ] agregar botón para subir a la parte superior de la página
+- [ ] dar estilo a páginas estáticas
+- [ ] modificar el texto de la home
