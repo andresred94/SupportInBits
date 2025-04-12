@@ -16,6 +16,7 @@ Esto hará que se copie el contenido exacto en staticFiles
   --indigoEnlaceBread: #6F009E;
   --brown: #514b23;
   --lemon-lime: #E4FF1A;
+  --orangepantone: #F26419;
 }
 body {
   background-color: var(--bk_principal);
@@ -42,7 +43,7 @@ body {
     #contenido-cookies {
       text-align: justify;
       text-justify: inter-word;
-      p , h1  {
+      p , h1, h2, li, .table {
         color: var(--tx-nm-lg);
       }
     }

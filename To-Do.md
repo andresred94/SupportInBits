@@ -1,6 +1,6 @@
 # version 0.0.1
 **cada 100 tareas hechas aumenta en 1 el segundo dígito de la versión**
-- [x] ~~buscar la manera de instalar bootstrap en templates~~ `py install django-bootstrap-v5`
+- [x] ~~buscar la manera de instalar bootstrap en templates~~ 
 - [x] ~~buscar la manera de servir archivos css y js~~
 - [x] ~~implementar breadcrumps en la web dinámico~~
 - [x] ~~añadir tittle a cada página~~  
@@ -18,6 +18,7 @@
 - [x] ~~Implementar MySQL con Django~~
 - [x] ~~implementar blog~~
 - [x] ~~definir una paleta de colores~~
+- [x] ~~estilos al header nav y footer~~
 - [ ] **implementar la conexión con la base de datos en AWS** 
 - [ ] buscar la manera de implementar TinyMCE
 - [ ] implementar un inicio de sesión
