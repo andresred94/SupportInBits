@@ -1,17 +1,37 @@
-/*
+/*app/supportinbits/static/supportinbits/css/global.css
 NOTA: siempre que hagas cambios en este archivo realiza un collectstatic
 Esto hará que se copie el contenido exacto en staticFiles
 */
 @font-face {
   font-family: "fuente-principal";
-  src: url('../fonts/Roboto-Regular.ttf');
+  src: url("../fonts/Roboto-Regular.ttf");
 }
 * {
   padding: 0;
   margin: 0;
 }
-
+:root {
+  --bk_principal: #F2F2F2;
+  --tx-nm-lg: #003366;
+  --indigoEnlaceBread: #6F009E;
+  --brown: #514b23;
+  --lemon-lime: #E4FF1A;
+}
 body {
+  background-color: var(--bk_principal);
+  a{
+    color: var(--tx-nm-lg);
+    text-decoration: none;
+  }
+  .breadcrumb {
+    li,
+    a {
+      color: var(--tx-nm-lg);
+    }
+    .active{
+      color: var(--indigoEnlaceBread);
+    }
+  }
   font-family: "fuente-principal", sans-serif;
   .container {
     /*estilos generales de cada page*/
@@ -22,8 +42,25 @@ body {
     #contenido-cookies {
       text-align: justify;
       text-justify: inter-word;
+      p , h1  {
+        color: var(--tx-nm-lg);
+      }
     }
     /*estilos individuales de cada page*/
+    #contenedor-home-blog{
+      .btn-primary{
+        background-color: var(--indigoEnlaceBread);
+        color: var(--lemon-lime);
+      }
+    }
+    #contenedor-detalle-entrada{
+      .card-body{
+        .btn-primary{
+          background-color: var(--indigoEnlaceBread);
+          color: var(--lemon-lime);
+        }
+      }
+    }
   }
 
   /*barra de cookies*/
