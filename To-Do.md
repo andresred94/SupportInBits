@@ -17,6 +17,7 @@
 - [x] ~~implementar registro de cookies con cookies_consent~~
 - [x] ~~Implementar MySQL con Django~~
 - [x] ~~implementar blog~~
+- [x] ~~definir una paleta de colores~~
 - [ ] implementar la conexión con la base de datos en AWS 
 - [ ] buscar la manera de implementar TinyMCE
 - [ ] implementar un inicio de sesión
@@ -25,7 +26,6 @@
 - [ ] implementar la API de Google Analytics 
 - [ ] implementar la API de Google Maps
 - [ ] utilizar CDN para las imagenes
-- [ ] definir una paleta de colores
 - [ ] crear un botón para el menú de accesibilidad
 - [ ] Implementar la libreria de Leaflet
 - [ ] crear las plantillas accesibles
