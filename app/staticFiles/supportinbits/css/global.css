@@ -17,6 +17,7 @@ Esto hará que se copie el contenido exacto en staticFiles
   --brown: #514b23;
   --lemon-lime: #e4ff1a;
   --orangepantone: #f26419;
+  --texto-boton: #FAFF24;
 }
 
 body {
@@ -27,6 +28,12 @@ body {
     color: var(--tx-nm-lg);
     text-decoration: none;
   }
+  header{
+    button{
+      background-color: var(--indigoEnlaceBread);
+      color: var(--texto-boton);
+    }
+  }
   .breadcrumb {
     li,
     a {
@@ -36,14 +43,7 @@ body {
       color: var(--indigoEnlaceBread);
     }
   }
-  footer {
-    position: relative;
-    right: 220px;
-    width: 90vw;
-    height: auto;
-    text-align: center;
-    padding: 20px 0;
-  }
+
   font-family: "fuente-principal", sans-serif;
   .container {
     flex: 1; /* Esto hace que el contenido ocupe el espacio disponible */

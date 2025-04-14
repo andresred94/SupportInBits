@@ -17,6 +17,7 @@ Esto hará que se copie el contenido exacto en staticFiles
   --brown: #514b23;
   --lemon-lime: #e4ff1a;
   --orangepantone: #f26419;
+  --texto-boton: #faff24;
 }
 
 body {
@@ -26,6 +27,28 @@ body {
   a {
     color: var(--tx-nm-lg);
     text-decoration: none;
+  }
+  header {
+    .dropdown-item:active {
+      color: var(--texto-boton);
+      background-color: var(--indigoEnlaceBread);
+    }
+    .nav-link:focus {
+      box-shadow: inset 0 -5px 0 var(--indigoEnlaceBread);
+    }
+    .btn {
+      background-color: var(--indigoEnlaceBread);
+      color: var(--texto-boton);
+      border: solid var(--indigoEnlaceBread);
+    }
+    .btn:hover {
+      background-color: var(--texto-boton);
+      border: solid var(--indigoEnlaceBread);
+    }
+    .btn:focus {
+      border: solid var(--texto-boton);
+      box-shadow: var(--texto-boton);
+    }
   }
   .breadcrumb {
     li,
@@ -63,6 +86,12 @@ body {
         background-color: var(--indigoEnlaceBread);
         color: var(--lemon-lime);
       }
+      .accordion {
+        a:focus,
+        a:hover {
+          box-shadow: inset 0 -2px 0 var(--indigoEnlaceBread);
+        }
+      }
     }
     #contenedor-detalle-entrada {
       .card-body {
@@ -72,8 +101,30 @@ body {
         }
       }
     }
+    #contenido-faq,
+    #contenedor-home-blog {
+      button {
+        background-color: var(--tx-nm-lg);
+        color: var(--texto-boton);
+      }
+      .accordion-button::after {
+        background-image: none;
+      }
+      .accordion-button:focus {
+        box-shadow: inset 0 -5px 0 var(--texto-boton);
+      }
+    }
   }
 
+  footer {
+    a{
+      text-decoration: none;
+    }
+    a:focus,
+    a:hover {
+      box-shadow: inset 0 -2px 0 var(--indigoEnlaceBread);
+    }
+  }
   /*barra de cookies*/
   .cookie-bar {
     position: fixed;
