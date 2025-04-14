@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i2791=hxsj@57o_q*#wdlp@*6b69y6c1c58)wo8##f7(mu%41f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -87,19 +87,21 @@ WSGI_APPLICATION = 'supportinbits.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+    'mysql': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'supportinbits',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',  # O la IP del servidor si es remoto
+        'PORT': '3306',       # Puerto de MySQL (por defecto: 3306)
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # Modo estricto de MySQL
+        }
+    },
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'mongodb': {  # MongoDB para posts del blog
-        'ENGINE': 'djongo',
-        'NAME': 'blog_db',
-        'CLIENT': {
-            'host': 'localhost',
-            'port': 27017,
-            'authSource': 'admin',
-        }
-    }
 }
 
 
@@ -147,6 +149,10 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'user.Usuario'   # O 'users.User' si creaste una app específica
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Cookies
 

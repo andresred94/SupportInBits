@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from .models import Page
-# Create your views here.
 
+# Create your views here.
 def home(request):
     pagina = Page.objects.get(id=1)
     return render(
@@ -44,3 +45,8 @@ def test(request):
         request,
         'test.html',
     )
+
+def getAllPages(request):
+    # Los values son los que aparecen en en el modelo
+    paginas = Page.objects.all().values('id','titulo','m_descri','m_robots','m_handF','m_mobileOp')
+    return JsonResponse(list(paginas), safe=False,  content_type="application/json")

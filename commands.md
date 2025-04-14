@@ -56,8 +56,13 @@
 > `$ python manage.py createsuperuser` crea un usuario que se añade a la base de datos SQLite3\
 > `pip install django-cookie-consent` instala servicio cookies\
 > `pip install pylint-django` instala pylint-django\
-> `"pylint.args": ["load-plugins=pylint_django"],` añadir esta linea en File > Preferences > Settings para eliminar el error de pylint\
-
+> `"pylint.args": ["load-plugins=pylint_django"],` añadir esta linea en VSCODE File > Preferences > Settings para eliminar el error de pylint\
+> Para obtener todos los usuarios del panel del control de django\
+> `from django.contrib.auth import get_user_model`\
+> `User = get_user_model()`\
+> `users = User.objects.all()`\
+> `pip install mysqlclient` instala el cliente de mysql
+> `python manage.py load_initial_data` carga datos del archivo 
 ---
 
 ### comandos de ubuntu server
