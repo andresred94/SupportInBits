@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
     <link rel="stylesheet" href="{% static 'supportinbits/css/global.css' %}" />   
   </head>
-  <body>
+  <body  class="d-flex flex-column h-100">
     <div class="container" id="contenedor-pricipal">
       <!--encabezado-->
       <header>
@@ -60,7 +60,7 @@
 
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Plantillas</a>
+                      <a class="nav-link " aria-current="page" href="#">Plantillas</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/blog">Blog</a>
@@ -110,24 +110,30 @@
       </nav>
 
       <!--contenido-->
-      <div class="container">
-        <main>
+      <main class="flex-shrink-0">
+        <div class="container">
           {% block content %} {% endblock %}
-        </main>
-      </div>
+        </div>
+      </main>
 
       <!--footer-->
-      <div class="container">
-        <footer class="py-3 my-4">
+      <footer class="mt-auto py-3 fs-6">
+        <div class="container">
           <div class="d-flex justify-content-evenly flex-wrap pb-3 mb-3">
             <div class="col-12 col-md-auto"><a href="/politicas-de-privacidad" class="col-auto">Politicas de privacidad</a></div>
             <div class="col-12 col-md-auto"><a href="/quien-soy" class="col-auto">Quien soy</a></div>
             <div class="col-12 col-md-auto"><a href="/preguntas-frecuentes" class="link-opacity-50-hover">FAQs</a></div>
             <div class="col-12 col-md-auto"><a href="/politica-de-cookies" class="link-opacity-50-hover">Cookies</a></div>
           </div>
-          <p class="text-center text-body-secondary">© 2025 SupportInBits, Inc</p>
-        </footer>
-      </div>
+          <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>© 2025 SupportInBits.com</p>
+            <ul class="list-unstyled d-flex">
+              <li class="ms-3"><a class="link-body-emphasis" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a></li>
+              <li class="ms-3"><a class="link-body-emphasis" href="#" aria-label="Facebook"><i class="bi bi-github"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
 
   </div>
     {% load static %}
