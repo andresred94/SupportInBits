@@ -7,6 +7,8 @@ from user.forms import RegistroForm
 from page.models import Page
 from .models import Entrada, Seccion, Categoria
 from .decorators import rol_requerido
+from django.contrib.auth import login, logout
+from django.contrib import messages
 # Create your views here.
 
 def home_blog(request):
@@ -31,7 +33,7 @@ def home_blog(request):
 
 
 
-def registro(request):
+""" def registro(request):
     if request.method == 'POST':
         form = RegistroForm(request.POST)
         if form.is_valid():
@@ -47,6 +49,7 @@ def registro(request):
     else:
         form = RegistroForm()
     return render(request, 'blog/registro.html', {'form': form})
+ """
 
 
 class CrearEntradaView(LoginRequiredMixin, CreateView):
@@ -60,10 +63,7 @@ class CrearEntradaView(LoginRequiredMixin, CreateView):
     def test_func(self):
         return self.request.user.profile.es_blogger() or self.request.user.profile.es_admin()
 
-@rol_requerido('BLOGGER', 'ADMIN')
-def crear_entrada(request):
-    # Vista para crear entradas
-    pass
+
 
 class ListaEntradas(ListView):
     model = Entrada

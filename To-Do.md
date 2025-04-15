@@ -19,9 +19,9 @@
 - [x] ~~implementar blog~~
 - [x] ~~definir una paleta de colores~~
 - [x] ~~estilos al header nav y footer~~
+- [x] ~~implementar un inicio de sesión~~
 - [ ] **implementar la conexión con la base de datos en AWS** 
 - [ ] buscar la manera de implementar TinyMCE
-- [ ] implementar un inicio de sesión
 - [ ] API de google maps para crear mapa interactivo indicando rampas de accesibilidad
 - [ ] arreglar las cookies cada vez que se muestra otra vista
 - [ ] implementar la API de Google Analytics 

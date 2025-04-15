@@ -93,6 +93,13 @@ class Command(BaseCommand):
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
+            },
+                        {
+                'titulo': 'Support In Bits | Indentifícate',
+                'm_descri': 'En esta página podrás crear una cuenta o iniciar sesión si ya tienes una',
+                'm_handF': 'true',
+                'm_mobileOp': 'width',
+                'm_robots': 'noindex'
             }
         ]
         

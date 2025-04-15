@@ -3,29 +3,28 @@ from django.db import models
 
 class Usuario(AbstractUser):
     ROLES = (
-        ('BLOGGER', 'Blogger'),
-        ('MODERADOR', 'Moderador'),
-        ('ADMIN', 'Administrador'),
+        ('visitante', 'Visitante'),
+        ('registrado', 'Usuario Registrado'),
+        ('moderador', 'Moderador'),
+        ('administrador', 'Administrador'),
     )
     
-    nombres = models.CharField(max_length=100)
-    apellidos = models.CharField(max_length=100)
-    rol = models.CharField(max_length=10, choices=ROLES, default='BLOGGER')
-    
-    # Si quieres que el email sea único y requerido
-    email = models.EmailField(unique=True)
-    
-    def __str__(self):
-        return f"{self.nombres} {self.apellidos} ({self.username})"
+    rol = models.CharField(max_length=15, choices=ROLES, default='registrado')
+    avatar = models.ImageField(upload_to='avatares/', blank=True, null=True)
+    biografia = models.TextField(blank=True)
+    sitio_web = models.URLField(blank=True)
     
     @property
-    def es_blogger(self):
-        return self.rol == 'BLOGGER'
+    def es_administrador(self):
+        return self.rol == 'administrador' or self.is_superuser
     
     @property
     def es_moderador(self):
-        return self.rol == 'MODERADOR'
+        return self.rol == 'moderador' or self.es_administrador
     
     @property
-    def es_admin(self):
-        return self.rol == 'ADMIN'
+    def es_registrado(self):
+        return self.rol == 'registrado' or self.es_moderador
+    
+    def __str__(self):
+        return f"{self.username} ({self.get_rol_display()})"
