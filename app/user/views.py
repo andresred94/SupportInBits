@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
-from django.contrib.auth import login as auth_login
-from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import login
+from django.contrib.auth import logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
@@ -24,15 +25,15 @@ def registro(request):
             user = form.save()
             
             # Iniciar sesión automáticamente después del registro
-            auth_login(request,user)
+            login(request,user)
             
             # Redirección basada en el rol
             if user.is_superuser:
-                return redirect('tests')
+                return redirect('perfil_admin')
             elif user.rol == 'moderador':
                 return redirect('tests')
             else:
-                return redirect('tests')
+                return redirect('perfil_registrado')
     else:
         form = RegistroForm()
     
@@ -49,51 +50,62 @@ def registro(request):
 
 
 
-def login(request):
+def user_login(request):
     pagina = Page.objects.get(id=8)
     
-    # print("Datos del formulario:", request.POST)
-    
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            # form = AuthenticationForm(request, data=request.POST)
-            form = RegistroForm(request, data=request.POST)  # Usa el formulario correcto
+    # Eliminar la verificación inicial de is_authenticated
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(request, username=username, password=password)
-            auth_login(request, user)
-
+            
             if user is not None:
-                auth_login(request, user)
+                login(request, user)
+                messages.success(request, f'¡Bienvenido {username}!')
                 
                 # Redirección basada en el rol
                 if user.is_superuser:
-                    return redirect('tests')
+                    return redirect('perfil_admin')
                 elif user.rol == 'moderador':
                     return redirect('tests')
                 else:
-                    return redirect('tests')
+                    return redirect('perfil_registrado')
         else:
-            messages.error(request, "Usuario o contraseña incorrectos")
+            # Mostrar errores específicos del formulario
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"Error en {field}: {error}")
     else:
-        form = RegistroForm()
+        form = AuthenticationForm()
     
-    next_param = request.GET.get('next', '')
-
     return render(
-        request, 
-        'user/login.html', 
-        context={
-            'form': form,
-            'page': pagina,
-            'next': next_param
-        })
+        request,
+        'user/login.html', {
+        'form': form,
+        'page': pagina,
+    })
 
+def perfil_registrado(request):
+    pagina = Page.objects.get(id=8)
+    return render(
+            request,
+            'user/perfil_registrado.html', {
+            'page': pagina,
+        })
+def perfil_admin(request):
+    pagina = Page.objects.get(id=8)
+    return render(
+            request,
+            'user/perfil_admin.html', {
+            'page': pagina,
+        })
 # Vista de logout
 @login_required
 def logout_view(request):
-    auth_logout(request)
+    logout(request)
     messages.info(request, 'Has cerrado sesión correctamente.')
     return redirect('home')
 

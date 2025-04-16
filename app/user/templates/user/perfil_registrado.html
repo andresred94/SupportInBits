@@ -1,0 +1,81 @@
+{% extends "base_registrado.html" %} 
+{% load static %} 
+{% block content %}
+
+<div id="pages-container"></div>
+{% if user.is_authenticated %}
+<!--si es supeuser-->
+{% if user.is_superuser %}
+<h1>Bienvenido Administrador, {{ user.username }}!</h1>
+<p>correo:  {{ user.email }}</p>
+
+<p class="fs-3">Configuraciones: </p>
+
+<div class="row">
+    <div class="col">
+
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Entradas</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Páginas</button>
+
+        
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <p>Try scrolling the rest of the page to see this option in action.</p>
+          </div>
+        </div>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <p>.....</p>
+          </div>
+        </div>
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdroped with scrolling</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <p>Try scrolling the rest of the page to see this option in action.</p>
+          </div>
+        </div>
+        
+        <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar Sesión</a>
+
+    </div>
+</div>
+<!--sino ha sido creado con el comando superuser-->
+{% else %}
+<h1>Bienvenido, {{ user.username }}!</h1>
+<p>puedes modificar tus comentarios</p>
+
+{% endif %}
+
+<!--sino está registrado muestra lo siguiente-->
+{% else %}
+    
+    <div class="container" id="contenido_user_noregistrado">
+        <p class="h1 text-center">¿Todavía no estás registrado?<p>
+        <p class="display-4 text-center">Únete a nuestra comunidad para poder comentar en las
+            entradas del blogs y estar informado de las nuevas publicaciones.
+        </p>
+
+        <div class="row mt-5">
+            <div class="d-flex justify-content-center">
+                <a href="/identificate/registrate" class="btn btn-outline-primary fs-1 ">
+                    Registrarte
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+{% endif %}
+
+{% endblock content%}

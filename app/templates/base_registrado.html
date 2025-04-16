@@ -68,15 +68,14 @@
                     <li class="nav-item">
                       <a class="nav-link" href="#">Servicios</a>
                     </li>
-                    {% if user.is_authenticated %}
-                      <li class="nav-item">
-                        <a class="nav-link " href="/mi-perfil">Mi perfil</a>
-                      </li>                   
-                    {% else %}
-                      <li class="nav-item">
-                        <a class="nav-link disabled " href="/mi-perfil">Mi perfil</a>
-                      </li>   
-                    {% endif %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="/mi-perfil">Mi perfil</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Only admins</a>
+                    </li>
+
                     <li class="nav-item dropdown d-md-none">
                       <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -154,18 +153,5 @@
           });
       });
       </script>
-      
-{% comment %}     {% if request|cookie_consent_enabled %}
-        <script type="text/javascript">
-            $(document).ready(function() {
-                showCookieBar({
-                    content: '<div class="cookie-bar"> <p>Utilizamos cookies para mejorar su experiencia de navegación. Si continúa navegando, consideramos que acepta su uso.</p> <a href="/accept_cookies" class="cc-cookie-accept">Aceptar</a> <a href="/decline_cookies" class="cc-cookie-decline">Rechazar</a> </div>',
-                    cookie_groups: ['analytics', 'marketing'],
-                    cookie_decline: 'true',
-                    
-                });            
-            });
-        </script>
-    {% endif %} {% endcomment %}
   </body>
 </html>
