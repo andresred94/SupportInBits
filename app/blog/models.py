@@ -2,9 +2,35 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from django.conf import settings
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.core.validators import MinLengthValidator
 
+class Comentario(models.Model):
+    entrada = models.ForeignKey('Entrada', on_delete=models.CASCADE, related_name='comentarios')
+    autor = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='comentarios_creados'
+    )
+    contenido = models.TextField(
+        validators=[MinLengthValidator(10, "El comentario debe tener al menos 10 caracteres.")]
+    )
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_actualizacion = models.DateTimeField(auto_now=True)
+    aprobado = models.BooleanField(default=False)
+    
+    class Meta:
+        ordering = ['fecha_creacion']
+        verbose_name = "Comentario"
+        verbose_name_plural = "Comentarios"
+    
+    def __str__(self):
+        return f"Comentario de {self.autor.username} en {self.entrada.titulo}"
+    
+    def puede_editar(self, user):
+        return user == self.autor or user.is_staff
+    
+    def puede_eliminar(self, user):
+        return user == self.autor or user.is_staff
 
 class Seccion(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
@@ -90,5 +116,3 @@ class Entrada(models.Model):
     @property
     def meta_robots(self):
         return "index, follow" if self.publicado else "noindex, nofollow"
-    
-

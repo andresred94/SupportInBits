@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import login
 from django.http import JsonResponse
 from .models import Page
+from user.forms import RegistroForm
 
 # Create your views here.
 def home(request):
@@ -39,6 +42,8 @@ def faq(request):
         'faq.html',
         context={'page': pagina}
     )
+
+
 
 def test(request):
     return render(
