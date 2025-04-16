@@ -28,7 +28,10 @@
 > `git checkout -b nombre-de-la-rama` crea una rama y te cambia a esa rama\
 > `git switch -c nombre-de-la-rama` en git > 2.23 cambia a la rama indicada\
 > `git checkout nombre-de-la-rama` cambia a la rama indicada\
-> `git merge nombre-de-la-rama` fusiona la rama que
+> `git merge nombre-de-la-rama` fusiona la rama que\
+> `git log --oneline` para ver todos los commits\
+> `git checkout <hash-del-commit>` para cambiar a ese commit\
+> `git reset --hard {id_commit}` para borrar un commit\ 
 
 ---
 

@@ -2,7 +2,11 @@
 
 <h1>Page_Test</h1>
 <div id="pages-container"></div>
-
+{% if user.is_authenticated %}
+    <p>Bienvenido, {{ user.username }}!</p>
+{% else %}
+    <p>Por favor inicia sesión.</p>
+{% endif %}
 {% comment %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {

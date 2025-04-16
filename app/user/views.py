@@ -1,15 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, logout, authenticate
-from django.http import Http404
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from django.contrib.auth import logout
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from blog.models import Entrada, Comentario, Seccion, Categoria
 from .forms import RegistroForm, LoginForm
+from .models import Usuario
 from page.models import Page
-# Vista de inicio
+""" from django.urls import reverse_lazy """
+""" from django.contrib.auth.forms import AuthenticationForm """
+""" from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView """
+""" from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin """
 
 
 # Vista de registro
@@ -23,15 +27,13 @@ def registro(request):
             # Iniciar sesión automáticamente después del registro
             login(request,user)
             
-            messages.success(request, 
-                f'¡Registro exitoso! Bienvenido {user.username}. '
-                'Ahora puedes comenzar a comentar en las entradas.'
-            )
-            
-
-            # Redirigir al home o a la página que venía en 'next'
-            next_url = request.POST.get('next', '')
-            return redirect(next_url if next_url else 'home')
+            # Redirección basada en el rol
+            if user.is_superuser:
+                return redirect('perfil_admin')
+            elif user.rol == 'moderador':
+                return redirect('tests')
+            else:
+                return redirect('perfil_registrado')
     else:
         form = RegistroForm()
     
@@ -46,33 +48,60 @@ def registro(request):
         'next': next_param
     })
 
-def login_view(request):
+
+
+def user_login(request):
     pagina = Page.objects.get(id=8)
-    if request.user.is_authenticated:
-        # El usuario está logueado
-        print(f"Usuario autenticado: {request.user.username}")
-    else:
-        # El usuario no está logueado
-        print("Usuario no autenticado")
-        
+    
+    # Eliminar la verificación inicial de is_authenticated
     if request.method == 'POST':
-        form = RegistroForm(request.POST)
+        form = AuthenticationForm(request, data=request.POST)
+        
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request, '¡Registro exitoso!')
-            return redirect('home')
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                messages.success(request, f'¡Bienvenido {username}!')
+                
+                # Redirección basada en el rol
+                if user.is_superuser:
+                    return redirect('perfil_admin')
+                elif user.rol == 'moderador':
+                    return redirect('tests')
+                else:
+                    return redirect('perfil_registrado')
+        else:
+            # Mostrar errores específicos del formulario
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"Error en {field}: {error}")
     else:
-        form = RegistroForm()
+        form = AuthenticationForm()
+    
     return render(
-        request, 
-        'user/login.html', 
-        context={
-            'form': form,
-            'page':pagina
+        request,
+        'user/login.html', {
+        'form': form,
+        'page': pagina,
+    })
+
+def perfil_registrado(request):
+    pagina = Page.objects.get(id=8)
+    return render(
+            request,
+            'user/perfil_registrado.html', {
+            'page': pagina,
         })
-
-
+def perfil_admin(request):
+    pagina = Page.objects.get(id=8)
+    return render(
+            request,
+            'user/perfil_admin.html', {
+            'page': pagina,
+        })
 # Vista de logout
 @login_required
 def logout_view(request):
@@ -129,3 +158,29 @@ def moderar_comentario(request, pk, accion):
         messages.success(request, 'Comentario eliminado.')
     
     return redirect('gestion_comentarios')
+
+def is_superuser(user):
+    return user.is_superuser or (hasattr(user, 'rol') and user.rol == 'administrador')
+
+@user_passes_test(is_superuser, login_url='/identificate/')
+def panel_administrador(request):
+    # Obtener todos los objetos que puede gestionar
+    usuarios = Usuario.objects.all().order_by('-date_joined')
+    entradas = Entrada.objects.all().order_by('-fecha_publicacion')
+    comentarios = Comentario.objects.all().order_by('-fecha_creacion')
+    
+    # Estadísticas
+    total_usuarios = usuarios.count()
+    total_entradas = entradas.count()
+    total_comentarios = comentarios.count()
+    
+    context = {
+        'usuarios': usuarios[:5],  # Últimos 5 registrados
+        'entradas': entradas[:5],  # Últimas 5 entradas
+        'comentarios': comentarios[:5],  # Últimos 5 comentarios
+        'total_usuarios': total_usuarios,
+        'total_entradas': total_entradas,
+        'total_comentarios': total_comentarios,
+    }
+    
+    return render(request, 'admin/panel_administrador.html', context)
