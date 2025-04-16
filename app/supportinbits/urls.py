@@ -21,6 +21,6 @@ urlpatterns = [
     path('', include('page.urls')),
     path('cookies/', include('cookie_consent.urls')),
     path('blog/', include('blog.urls')),
-    path('cuenta/', include('user.urls')),
+    path('identificate/', include('user.urls')),
 
 ]

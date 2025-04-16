@@ -54,7 +54,7 @@
                                class="form-control {% if form.errors %}is-invalid{% endif %}" 
                                required>
                         <div class="form-text">
-                            {% comment %} <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a> {% endcomment %}
+                            <a href="#">¿Olvidaste tu contraseña?</a>
                         </div>
                     </div>
                     
@@ -69,7 +69,7 @@
                 
                 <div class="text-center">
                     <p class="mb-1">¿No tienes una cuenta?</p>
-                    {% comment %} <a href="{% url 'registro' %}" class="btn btn-outline-primary"> {% endcomment %}
+                    <a href="/identificate/registrate" class="btn btn-outline-primary">
                         Crear una cuenta nueva
                     </a>
                 </div>

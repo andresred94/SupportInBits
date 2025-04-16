@@ -1,0 +1,86 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% load static %}
+
+<div class="container mt-4">
+    <h2>Panel de Administración</h2>
+    
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Usuarios</h5>
+                    <p class="card-text">{{ total_usuarios }} registrados</p>
+                    <a href="{% url 'gestion_usuarios' %}" class="text-white">Gestionar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Entradas</h5>
+                    <p class="card-text">{{ total_entradas }} publicadas</p>
+                    <a href="{% url 'gestion_entradas' %}" class="text-white">Gestionar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <h5 class="card-title">Comentarios</h5>
+                    <p class="card-text">{{ total_comentarios }} realizados</p>
+                    <a href="{% url 'gestion_comentarios' %}" class="text-white">Gestionar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Últimos Usuarios
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for usuario in usuarios %}
+                    <li class="list-group-item">
+                        {{ usuario.username }} ({{ usuario.get_rol_display }})
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Últimas Entradas
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for entrada in entradas %}
+                    <li class="list-group-item">
+                        {{ entrada.titulo|truncatechars:30 }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Últimos Comentarios
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for comentario in comentarios %}
+                    <li class="list-group-item">
+                        {{ comentario.contenido|truncatechars:30 }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

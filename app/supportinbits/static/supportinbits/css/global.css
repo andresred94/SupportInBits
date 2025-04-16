@@ -64,6 +64,22 @@ body {
   .container {
     flex: 1; /* Esto hace que el contenido ocupe el espacio disponible */
     padding: 20px;
+    .btn-primary, .btn-outline-primary {
+      background-color: var(--indigoEnlaceBread);
+      color: var(--lemon-lime);
+    }
+    .btn-primary:hover{
+      background-color: var(--texto-boton);
+      color: var(--indigoEnlaceBread);
+    }
+    .btn-secondary{
+      background-color: var(--texto-boton);
+      color: var(--indigoEnlaceBread);
+    }
+    .btn-outline-primary:hover{
+      background-color: var(--texto-boton);
+      color: var(--indigoEnlaceBread);
+    }
     /*estilos generales de cada page*/
     #contenido-home,
     #contenido-privacy,
@@ -82,10 +98,7 @@ body {
     }
     /*estilos individuales de cada page*/
     #contenedor-home-blog {
-      .btn-primary {
-        background-color: var(--indigoEnlaceBread);
-        color: var(--lemon-lime);
-      }
+      
       .accordion {
         a:focus,
         a:hover {
