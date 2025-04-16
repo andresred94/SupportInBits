@@ -19,6 +19,7 @@ from page.models import Page
 # Vista de registro
 
 def registro(request):
+    pagina = Page.objects.get(id=9)
     if request.method == 'POST':
         form = RegistroForm(request.POST)
         if form.is_valid():
@@ -45,7 +46,8 @@ def registro(request):
         'user/registro.html', 
         context={
         'form': form,
-        'next': next_param
+        'next': next_param,
+        'page': pagina,
     })
 
 
@@ -89,14 +91,14 @@ def user_login(request):
     })
 
 def perfil_registrado(request):
-    pagina = Page.objects.get(id=8)
+    pagina = Page.objects.get(id=10)
     return render(
             request,
             'user/perfil_registrado.html', {
             'page': pagina,
         })
 def perfil_admin(request):
-    pagina = Page.objects.get(id=8)
+    pagina = Page.objects.get(id=10)
     return render(
             request,
             'user/perfil_admin.html', {

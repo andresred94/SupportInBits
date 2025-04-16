@@ -1,7 +1,6 @@
-{% extends "base_registrado.html" %} 
+{% extends "base.html" %} 
 {% load static %} 
 {% block content %}
-
 <div id="pages-container"></div>
 {% if user.is_authenticated %}
 <!--si es supeuser-->
@@ -45,16 +44,14 @@
             <p>Try scrolling the rest of the page to see this option in action.</p>
           </div>
         </div>
-        
-        <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar Sesión</a>
+
 
     </div>
 </div>
 <!--sino ha sido creado con el comando superuser-->
 {% else %}
-<h1>Bienvenido, {{ user.username }}!</h1>
-<p>puedes modificar tus comentarios</p>
-
+    <h1>Bienvenido, {{ user.username }}!</h1>
+    <p>puedes modificar tus comentarios</p>
 {% endif %}
 
 <!--sino está registrado muestra lo siguiente-->
