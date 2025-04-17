@@ -43,7 +43,8 @@ def faq(request):
         context={'page': pagina}
     )
 
-
+def acceso_denegado(request,exception=None):
+    return render(request, 'templates/403.html', status=403)
 
 def test(request):
     return render(

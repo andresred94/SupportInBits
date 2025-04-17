@@ -5,6 +5,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
+from .decorators import rol_requerido
 from django.contrib import messages
 from blog.models import Entrada, Comentario, Seccion, Categoria
 from .forms import RegistroForm, LoginForm
@@ -97,6 +98,8 @@ def perfil_registrado(request):
             'user/perfil_registrado.html', {
             'page': pagina,
         })
+
+@rol_requerido('administrador')
 def perfil_admin(request):
     pagina = Page.objects.get(id=10)
     return render(
