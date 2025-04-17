@@ -11,15 +11,23 @@
 - [ ] utilizar CDN para las imagenes
 - [ ] crear un botón para el menú de accesibilidad
 - [ ] Implementar la libreria de Leaflet
-- [ ] crear las plantillas accesibles
+- [ ] **crear las plantillas accesibles**
+- [ ] **modo oscuro/claro**
 - [ ] agregar botón para subir a la parte superior de la página
 - [ ] modificar el texto de la home
 - [ ] arreglar titulo de cada página
 - [ ] prohibir acceso a /admin si no tienes rol de admin
 - [ ] denegar acceso a /mi-perfil/admin a usarios con rol registrado o moderador
 - [ ] probar el funcionamiento de vista de error 403
+- [ ] aumentar un poco el espacio superior del botón "iniciar sesión"
+- [ ] habilitar barra de búsqueda
+- [ ] **vistas por cada categoría de cada sección**
+- [ ] **compartiendo arte**
+    - [ ] artistas
+    - [ ] libros
+    - [ ] música
 
----
+--- 20
 
 - [x] ~~buscar la manera de instalar bootstrap en templates~~
 - [x] ~~buscar la manera de servir archivos css y js~~
@@ -32,7 +40,7 @@
 - [x] ~~implementar vista error 404~~
 - [x] ~~arreglar el boton de hamburguesa~~
 
----
+--- 10
 
 - [x] ~~resolver problema de url~~
 - [x] ~~implementar registro de cookies con cookies_consent~~

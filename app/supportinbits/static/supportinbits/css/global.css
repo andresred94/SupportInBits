@@ -26,7 +26,10 @@ body {
   background-color: var(--bk_principal);
   a {
     color: var(--tx-nm-lg);
-    text-decoration: none;
+  }
+  a:focus,
+  a:hover {
+    box-shadow: inset 0 -2px 0 var(--indigoEnlaceBread);
   }
   header {
     .dropdown-item:active {
@@ -64,19 +67,20 @@ body {
   .container {
     flex: 1; /* Esto hace que el contenido ocupe el espacio disponible */
     padding: 20px;
-    .btn-primary, .btn-outline-primary {
+    .btn-primary,
+    .btn-outline-primary {
       background-color: var(--indigoEnlaceBread);
       color: var(--lemon-lime);
     }
-    .btn-primary:hover{
+    .btn-primary:hover {
       background-color: var(--texto-boton);
       color: var(--indigoEnlaceBread);
     }
-    .btn-secondary{
+    .btn-secondary {
       background-color: var(--texto-boton);
       color: var(--indigoEnlaceBread);
     }
-    .btn-outline-primary:hover{
+    .btn-outline-primary:hover {
       background-color: var(--texto-boton);
       color: var(--indigoEnlaceBread);
     }
@@ -98,7 +102,6 @@ body {
     }
     /*estilos individuales de cada page*/
     #contenedor-home-blog {
-      
       .accordion {
         a:focus,
         a:hover {
@@ -130,12 +133,8 @@ body {
   }
 
   footer {
-    a{
+    a {
       text-decoration: none;
-    }
-    a:focus,
-    a:hover {
-      box-shadow: inset 0 -2px 0 var(--indigoEnlaceBread);
     }
   }
   /*barra de cookies*/
