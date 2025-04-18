@@ -94,24 +94,30 @@ class Command(BaseCommand):
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
             },
-                        {
+            {
                 'titulo': 'Support In Bits | Indentifícate',
                 'm_descri': 'En esta página podrás crear una cuenta o iniciar sesión si ya tienes una',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
             },
-                        {
+            {
                 'titulo': 'Support In Bits | Crear cuenta',
                 'm_descri': 'En esta página podrás crear una cuenta y unirte a nuestra comunidad',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
-            }
-            ,
-                        {
+            },
+            {
                 'titulo': ' | Support In Bits',
                 'm_descri': 'Web desarrollada para fomentar la creación de aplicaciones web usables y accesibles',
+                'm_handF': 'true',
+                'm_mobileOp': 'width',
+                'm_robots': 'noindex'
+            },
+            {
+                'titulo': 'Error 403 | Support In Bits',
+                'm_descri': 'Ha ocurrido un error 403. Ponte en contacto con el administrador',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'

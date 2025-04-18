@@ -9,6 +9,7 @@ from blog.models import Entrada, Comentario, Seccion, Categoria
 from .forms import RegistroForm, LoginForm
 from .models import Usuario
 from page.models import Page
+from django.core.exceptions import PermissionDenied
 """ from django.urls import reverse_lazy """
 """ from django.contrib.auth.forms import AuthenticationForm """
 """ from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView """
@@ -88,13 +89,17 @@ def user_login(request):
         'form': form,
         'page': pagina,
     })
+
 @login_required
 def perfil_registrado(request):
     User = get_user_model()
     pagina = Page.objects.get(id=10)
 
-    usuario = request.user
+    usuario = request.user     
     
+    if request.user.is_superuser:
+        raise PermissionDenied
+
     # Obtener comentarios del usuario, ordenados por fecha descendente
     comentarios = Comentario.objects.filter(
         autor=usuario
@@ -113,14 +118,16 @@ def perfil_registrado(request):
         context
     )
 
-@rol_requerido('administrador')
 def perfil_admin(request):
+    if not request.user.is_superuser:
+        raise PermissionDenied
     pagina = Page.objects.get(id=10)
     return render(
             request,
             'user/perfil_admin.html', {
             'page': pagina,
         })
+
 # Vista de logout
 @login_required
 def logout_view(request):

@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseForbidden
 from .models import Page
 from user.forms import RegistroForm
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 def home(request):
@@ -44,8 +45,19 @@ def faq(request):
     )
 
 def acceso_denegado(request,exception=None):
-    return render(request, 'templates/403.html', status=403)
+    pagina = Page.objects.get(id=11)
 
+    return render(
+        request, 
+        'templates/403.html', 
+        status=403,
+        context={'page': pagina}
+    )
+
+def csrf_failure(request,exception=None):
+    return HttpResponseForbidden
+
+  
 def test(request):
     return render(
         request,

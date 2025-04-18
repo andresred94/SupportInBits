@@ -18,7 +18,6 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path('secret-panel/', admin.site.urls),
     # path('admin/', perfil_admin, name="perfil_admin"),
     # path('admin/', include('user.urls')),
     path('', include('page.urls')),
@@ -27,4 +26,5 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('identificate/', include('user.urls')),
     path('mi-perfil/', include('user.urls')),
+    path('secret-panel/', admin.site.urls),
 ]
