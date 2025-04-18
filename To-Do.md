@@ -3,7 +3,7 @@
 **cada 100 tareas hechas aumenta en 1 el segundo dígito de la versión**
 
 - [ ] **implementar la conexión con la base de datos en AWS**
-- [ ] buscar la manera de implementar TinyMCE
+- [ ] **buscar la manera de implementar TinyMCE para crear las entradas**
 - [ ] API de google maps para crear mapa interactivo indicando rampas de accesibilidad
 - [ ] arreglar las cookies cada vez que se muestra otra vista
 - [ ] implementar la API de Google Analytics
@@ -14,18 +14,24 @@
 - [ ] **crear las plantillas accesibles**
 - [ ] **modo oscuro/claro**
 - [ ] agregar botón para subir a la parte superior de la página
-- [ ] modificar el texto de la home
-- [ ] arreglar titulo de cada página
-- [ ] prohibir acceso a /admin si no tienes rol de admin
-- [ ] denegar acceso a /mi-perfil/admin a usarios con rol registrado o moderador
+- [ ] añadir a la home las FAQ
 - [ ] probar el funcionamiento de vista de error 403
-- [ ] aumentar un poco el espacio superior del botón "iniciar sesión"
 - [ ] habilitar barra de búsqueda
-- [ ] **vistas por cada categoría de cada sección**
+- [ ] editar y eliminar comentarios rol administrador
+- [ ] editar y eliminar comentarios rol registrado
+- [ ] mostrar los comentarios del usuario en su perfil
+- [ ] **vistas por sección**
+- [ ] **vistas por categoríoa**
 - [ ] **compartiendo arte**
     - [ ] artistas
     - [ ] libros
     - [ ] música
+- [x] ~~arreglar titulo de cada página~~
+- [x] ~~mostrar comentarios dependiendo de si están o no aprobados~~
+- [x] ~~se habilita la función de comentar una entrada~~
+- [x] ~~prohibir acceso a /admin si no tienes rol de admin~~
+- [x] ~~denegar acceso a /mi-perfil/admin a usarios con rol registrado o moderador~~
+- [x] ~~aumentar un poco el espacio superior del botón "iniciar sesión"~~
 
 --- 20
 

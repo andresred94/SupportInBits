@@ -1,6 +1,4 @@
-{% extends 'base.html' %} 
-{% block content %} 
-{% load static %}
+{% extends 'base.html' %} {% block content %} {% load static %}
 <div class="row" id="contenedor-home-blog">
   <div class="col-md-8">
     <h1 class="mb-4">Entradas publicadas</h1>
@@ -55,7 +53,7 @@
 
   <div class="col-md-4">
     <div class="card mb-4">
-      <p class="card-header h5">Categorías</p>
+      <p class="card-header h5">Secciones</p>
       <div class="accordion" id="accordionCategorias">
         {% for seccion in secciones %}
         <div class="accordion-item">
@@ -95,5 +93,6 @@
       </div>
     </div>
   </div>
+
 </div>
 {% endblock content%}

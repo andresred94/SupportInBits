@@ -26,11 +26,20 @@ class Comentario(models.Model):
     def __str__(self):
         return f"Comentario de {self.autor.username} en {self.entrada.titulo}"
     
-    def puede_editar(self, user):
-        return user == self.autor or user.is_staff
+    @property
+    def puede_editar(self):
+        """
+        Verifica si el usuario actual puede editar este comentario
+        """
+        if not hasattr(self, 'current_user'):
+            return False
+        return self.current_user == self.autor or self.current_user.is_staff
     
-    def puede_eliminar(self, user):
-        return user == self.autor or user.is_staff
+    @property
+    def puede_eliminar(self):
+        if not hasattr(self, 'current_user'):
+            return False
+        return self.current_user == self.autor or self.current_user.is_staff
 
 class Seccion(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
@@ -85,8 +94,6 @@ class Entrada(models.Model):
     fecha_actualizacion = models.DateTimeField(auto_now=True)
     publicado = models.BooleanField(default=False)
     imagen_portada = models.ImageField(upload_to='blog/', blank=True, null=True)
-    
-    # Eliminamos el campo pagina = models.OneToOneField(...)
     
     class Meta:
         verbose_name = "Entrada"

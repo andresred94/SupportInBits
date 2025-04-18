@@ -1,37 +1,75 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends 'base.html' %}
+
+{% block title %}Crear Nueva Entrada{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <h2 class="mb-4">Crear Nueva Entrada</h2>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
-                    <button type="submit" class="btn btn-primary">Publicar Entrada</button>
-                    <a href="#" class="btn btn-secondary">Cancelar</a>
+    <h2>Crear Nueva Entrada</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% lorem 9 b random %}
+        <div class="mb-3">
+            {{ form.titulo.label_tag }}
+            {{ form.titulo }}
+            {% if form.titulo.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ form.titulo.errors }}
                 </div>
-            </form>
+            {% endif %}
         </div>
-    </div>
+        
+        <div class="mb-3">
+            {{ form.contenido.label_tag }}
+            {{ form.contenido }}
+            {% if form.contenido.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ form.contenido.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <!--resumen-->
+        <div class="mb-3">
+            {{ form.resumen.label_tag }}
+            {{ form.resumen }}
+            <small class="form-text text-muted">Máximo 500 caracteres</small>
+            {% if form.resumen.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ form.resumen.errors }}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form.categoria.label_tag }}
+                {{ form.categoria }}
+                {% if form.categoria.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.categoria.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                {{ form.imagen_portada.label_tag }}
+                {{ form.imagen_portada }}
+                {% if form.imagen_portada.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.imagen_portada.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="mb-3 form-check">
+            {{ form.publicado }}
+            {{ form.publicado.label_tag }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Guardar Entrada</button>
+        {% comment %} <a href="{% url 'lista_entradas' %}" class="btn btn-secondary">Cancelar</a> {% endcomment %}
+    </form>
 </div>
-{% endblock %}
 
-{% block extra_js %}
-<script src="https://cdn.tiny.cloud/1/your-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            tinymce.init({
-                selector: '.tinymce-editor',
-                plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
-                toolbar_mode: 'floating',
-                toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                height: 400,
-                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-            });
-        });
-    </script>
-</script>
+<!-- Incluye CKEditor si lo estás usando -->
 {% endblock %}

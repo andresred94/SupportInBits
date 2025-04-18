@@ -20,46 +20,67 @@
 </article>
 
 <section class="comments mb-5">
-    <h3>Comentarios ({{ comentarios.count }})</h3>
+    <h3>Comentarios ({{ total_comentarios_aprobados }})</h3>
     
+    <!-- Formulario para usuarios autenticados -->
     {% if user.is_authenticated %}
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">Deja tu comentario</h5>
-            <form method="post" action="{% url 'crear_comentario' entrada.slug %}">
-                {% csrf_token %}
-                {{ form_comentario.contenido }}
-                <button type="submit" class="btn btn-primary mt-2">Enviar comentario</button>
-            </form>
-        </div>
-    </div>
+    <form method="post" action="{% url 'crear_comentario' entrada.slug %}">
+        {% csrf_token %}
+        {{ form_comentario.contenido }}
+        <button type="submit" class="btn btn-primary mt-3">Enviar comentario</button>
+        <div class="dropdown-divider my-3"></div>
+    </form>
     {% else %}
     <div class="alert alert-info">
-        <a href="{% url 'login' %}">Inicia sesión</a> para dejar un comentario.
+        <a href="{% url 'login' %}?next={% url 'detalle_entrada' entrada.slug %}">Inicia sesión</a> para comentar.
     </div>
     {% endif %}
     
     {% for comentario in comentarios %}
-    <div class="card mb-3 {% if not comentario.aprobado %}bg-light{% endif %}">
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <h6 class="card-subtitle mb-2 text-muted">{{ comentario.autor.username }}</h6>
-                <small class="text-muted">{{ comentario.fecha_creacion|timesince }}</small>
+
+    {% if comentario.aprobado%}
+        <div class="card mb-3 {% if not comentario.aprobado %}bg-light{% endif %}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h6 class="card-subtitle mb-2 text-muted">{{ comentario.autor.username }}</h6>
+                    <small class="text-muted">{{ comentario.fecha_creacion|timesince }}</small>
+                </div>
+                    <p class="card-text">{{ comentario.contenido }}</p>
+                {% if comentario.puede_editar %}
+                    <div class="btn-group btn-group-sm ">
+                        <a href="#" class="btn btn-outline-secondary m-1">Editar</a>
+                        <a href="#" class="btn btn-outline-danger m-1">Eliminar</a>
+                    </div>
+                {% endif %}                    
             </div>
-            <p class="card-text">{{ comentario.contenido }}</p>
-            
-            {% if comentario.puede_editar user %}
-            <div class="btn-group btn-group-sm">
-                <a href="#" class="btn btn-outline-secondary">Editar</a>
-                <a href="#" class="btn btn-outline-danger">Eliminar</a>
-            </div>
-            {% endif %}
-            
-            {% if not comentario.aprobado and user.es_moderador %}
-            <span class="badge bg-warning text-dark">Pendiente de aprobación</span>
-            {% endif %}
         </div>
-    </div>
+    {% endif %}
+    
+    {% empty %}
+    <p class="text-muted">No hay comentarios aún. Sé el primero en comentar!</p>
+    {% endfor %}
+
+    {% for comentario in comentarios %}
+        {% if user.is_superuser %}
+            {% if comentario.aprobado == 1 %}
+                <div class="card mb-3 ">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="card-subtitle mb-2 text-muted">{{ comentario.autor.username }}</h6>
+                            <small class="text-muted">{{ comentario.fecha_creacion|timesince }}</small>
+                        </div>
+                            <p class="card-text">{{ comentario.contenido }}</p>
+                            <span class="badge bg-warning text-dark">Pendiente de aprobación</span>
+                        {% if comentario.puede_editar %}
+                            <div class="btn-group btn-group-sm ">
+                                <a href="#" class="btn btn-outline-secondary m-1">Editar</a>
+                                <a href="#" class="btn btn-outline-danger m-1">Eliminar</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}                
+        {% endif %}
     {% empty %}
     <p class="text-muted">No hay comentarios aún. Sé el primero en comentar!</p>
     {% endfor %}

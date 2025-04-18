@@ -6,44 +6,62 @@
     <h1>Bienvenido Administrador, {{ user.username }}!</h1>
     <p>correo:  {{ user.email }}</p>
     
-    <p class="fs-3">Configuraciones: </p>
+    <p class="fs-3">Panel de administración: </p>
     
     <div class="row">
         <div class="col">
     
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Entradas</button>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Páginas</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-entradas" aria-controls="offcanvasWithBothOptions">Entradas</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-paginas" aria-controls="offcanvasWithBothOptions">Páginas</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-usuario" aria-controls="offcanvasWithBothOptions">Usuarios</button>
     
             
-            <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-entradas" aria-labelledby="offcanvasWithBothOptionsLabel">
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Panel de administración de entradas</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
-                <p>Try scrolling the rest of the page to see this option in action.</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a href="/blog/entradas/nueva">Crear entrada</a></li>
+                  <li class="list-group-item"><a>Borrar entrada</a></li>
+                  <li class="list-group-item"><a>Modificar entrada</a></li>
+                  <li class="list-group-item"><a>Buscar entrada</a></li>
+                </ul>                
               </div>
             </div>
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-paginas" aria-labelledby="offcanvasWithBothOptionsLabel">
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Panel de administración de páginas</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
-                <p>.....</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a>Crear página</a></li>
+                  <li class="list-group-item"><a>Borrar página</a></li>
+                  <li class="list-group-item"><a>Modificar página</a></li>
+                  <li class="list-group-item"><a>Buscar página</a></li>
+                <ul>
               </div>
             </div>
-            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-usuario" aria-labelledby="offcanvasWithBothOptionsLabel">
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdroped with scrolling</h5>
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Panel de administración de usuarios</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
-                <p>Try scrolling the rest of the page to see this option in action.</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a>Crear usuario</a></li>
+                  <li class="list-group-item"><a>Borrar usuario</a></li>
+                  <li class="list-group-item"><a>Modificar usuario</a></li>
+                  <li class="list-group-item"><a>Buscar usuario</a></li>
+                <ul>
               </div>
             </div>
             
-            <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar Sesión</a>
+
     
         </div>
     </div>

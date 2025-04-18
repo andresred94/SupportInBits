@@ -1,14 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-# from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from user.decorators import rol_requerido
 from django.views.generic import ListView, DetailView, CreateView
-from user.models import Usuario
-from user.forms import RegistroForm
 from page.models import Page
 from .models import Entrada, Seccion, Categoria
-from .decorators import rol_requerido
-from django.contrib.auth import login, logout
 from django.contrib import messages
+from .forms import EntradaForm, ComentarioForm
+
 # Create your views here.
 
 def home_blog(request):
@@ -31,38 +30,53 @@ def home_blog(request):
         }
     )
 
-
-
-""" def registro(request):
+@rol_requerido('administrador')
+def crear_entrada(request):
     if request.method == 'POST':
-        form = RegistroForm(request.POST)
+        form = EntradaForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
-            user = form.save()
-            # Crear el perfil
-            Usuario.objects.create(
-                user=user,
-                nombres=form.cleaned_data['nombres'],
-                apellidos=form.cleaned_data['apellidos'],
-                rol='BLOGGER'  # Rol por defecto
-            )
-            return redirect('login')
+            entrada = form.save()
+            messages.success(request, f'Entrada "{entrada.titulo}" creada exitosamente!')
+            return redirect(entrada.get_absolute_url())
     else:
-        form = RegistroForm()
-    return render(request, 'blog/registro.html', {'form': form})
- """
-
-
-class CrearEntradaView(LoginRequiredMixin, CreateView):
-    model = Entrada
-    fields = ['titulo', 'contenido', 'resumen', 'categoria', 'imagen_portada']
+        form = EntradaForm(user=request.user)
     
-    def form_valid(self, form):
-        form.instance.autor = self.request.user
-        return super().form_valid(form)
-    
-    def test_func(self):
-        return self.request.user.profile.es_blogger() or self.request.user.profile.es_admin()
+    return render(request, 'blog/crear_entrada.html', {'form': form})
 
+""" @login_required
+def crear_comentario(request, slug):
+    entrada = get_object_or_404(Entrada, slug=slug)
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.entrada = entrada
+            comentario.autor = request.user
+            comentario.save()
+            messages.success(request, 'Comentario agregado correctamente!')
+    return redirect('detalle_entrada', slug=entrada.slug) """
+
+@login_required
+@require_POST
+def crear_comentario(request, slug):
+    entrada = get_object_or_404(Entrada, slug=slug)
+    form = ComentarioForm(request.POST)
+    
+    if form.is_valid():
+        comentario = form.save(commit=False)
+        comentario.entrada = entrada
+        comentario.autor = request.user
+        
+        # Si es moderador o admin, aprobar automáticamente
+        if request.user.is_superuser or request.user.rol == 'moderador':
+            comentario.aprobado = True
+        
+        comentario.save()
+        messages.success(request, '¡Comentario enviado!')
+    else:
+        messages.error(request, 'Error al enviar el comentario')
+    
+    return redirect('detalle_entrada', slug=entrada.slug)
 
 
 class ListaEntradas(ListView):
@@ -84,12 +98,24 @@ class DetalleEntrada(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Obtenemos la página del blog (ID 6) como base
+        
+        # Configuración de la página
         context['page'] = Page.objects.get(id=6)
-        # Sobrescribimos los campos que necesitamos
         context['page'].titulo = self.object.meta_titulo
         context['page'].m_descri = self.object.meta_descripcion
         context['page'].m_robots = self.object.meta_robots
+        
+        # Obtener solo comentarios aprobados para el conteo
+        comentarios_aprobados = self.object.comentarios.filter(aprobado=True)
+        context['total_comentarios_aprobados'] = comentarios_aprobados.count()
+        
+        context['comentarios'] = comentarios_aprobados.order_by('fecha_creacion')
+        context['form_comentario'] = ComentarioForm()  # Asegúrate de importar ComentarioForm
+        
+        # Pasar el usuario al contexto para usar en los métodos del modelo
+        for comentario in context['comentarios']:
+            comentario.current_user = self.request.user
+        
         return context
 
 class EntradasPorCategoria(ListView):
