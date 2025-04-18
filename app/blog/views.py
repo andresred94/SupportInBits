@@ -105,11 +105,23 @@ class DetalleEntrada(DetailView):
         context['page'].m_descri = self.object.meta_descripcion
         context['page'].m_robots = self.object.meta_robots
         
+        # Comentarios (solo aprobados o del usuario actual)
         # Obtener solo comentarios aprobados para el conteo
         comentarios_aprobados = self.object.comentarios.filter(aprobado=True)
         context['total_comentarios_aprobados'] = comentarios_aprobados.count()
+
+        # Si el usuario está autenticado, incluir también sus comentarios no aprobados
+        if self.request.user.is_authenticated:
+            mis_comentarios = self.object.comentarios.filter(autor=self.request.user, aprobado=True)
+            comentarios = comentarios_aprobados | mis_comentarios
+        else:
+            comentarios = comentarios_aprobados
         
-        context['comentarios'] = comentarios_aprobados.order_by('fecha_creacion')
+        if self.request.user.is_staff:
+            comentarios_no_aprobados = self.object.comentarios.filter(aprobado=False)
+            context['comentarios_pendientes'] = comentarios_no_aprobados.order_by('fecha_creacion')
+            
+        context['comentarios'] = comentarios.order_by('fecha_creacion')
         context['form_comentario'] = ComentarioForm()  # Asegúrate de importar ComentarioForm
         
         # Pasar el usuario al contexto para usar en los métodos del modelo

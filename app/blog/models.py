@@ -33,7 +33,7 @@ class Comentario(models.Model):
         """
         if not hasattr(self, 'current_user'):
             return False
-        return self.current_user == self.autor or self.current_user.is_staff
+        return self.current_user == self.autor or self.current_user.is_superuser
     
     @property
     def puede_eliminar(self):
