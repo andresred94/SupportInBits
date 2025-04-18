@@ -43,19 +43,6 @@ def crear_entrada(request):
     
     return render(request, 'blog/crear_entrada.html', {'form': form})
 
-""" @login_required
-def crear_comentario(request, slug):
-    entrada = get_object_or_404(Entrada, slug=slug)
-    if request.method == 'POST':
-        form = ComentarioForm(request.POST)
-        if form.is_valid():
-            comentario = form.save(commit=False)
-            comentario.entrada = entrada
-            comentario.autor = request.user
-            comentario.save()
-            messages.success(request, 'Comentario agregado correctamente!')
-    return redirect('detalle_entrada', slug=entrada.slug) """
-
 @login_required
 @require_POST
 def crear_comentario(request, slug):
@@ -120,7 +107,7 @@ class DetalleEntrada(DetailView):
         if self.request.user.is_staff:
             comentarios_no_aprobados = self.object.comentarios.filter(aprobado=False)
             context['comentarios_pendientes'] = comentarios_no_aprobados.order_by('fecha_creacion')
-            
+
         context['comentarios'] = comentarios.order_by('fecha_creacion')
         context['form_comentario'] = ComentarioForm()  # Asegúrate de importar ComentarioForm
         

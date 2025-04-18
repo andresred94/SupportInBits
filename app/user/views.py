@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate
-from django.contrib.auth import login
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
@@ -90,14 +88,30 @@ def user_login(request):
         'form': form,
         'page': pagina,
     })
-
+@login_required
 def perfil_registrado(request):
+    User = get_user_model()
     pagina = Page.objects.get(id=10)
+
+    usuario = request.user
+    
+    # Obtener comentarios del usuario, ordenados por fecha descendente
+    comentarios = Comentario.objects.filter(
+        autor=usuario
+    ).select_related('entrada').order_by('-fecha_creacion')
+    
+    context = {
+        'usuario_perfil': usuario,
+        'comentarios': comentarios,
+        'page': pagina,
+        'total_comentarios': comentarios.count()
+    }
+    
     return render(
-            request,
-            'user/perfil_registrado.html', {
-            'page': pagina,
-        })
+        request, 
+        'user/perfil_registrado.html', 
+        context
+    )
 
 @rol_requerido('administrador')
 def perfil_admin(request):
@@ -114,24 +128,7 @@ def logout_view(request):
     messages.info(request, 'Has cerrado sesión correctamente.')
     return redirect('home')
 
-# Vista para crear comentario
-# @login_required
-""" def crear_comentario(request, slug):
-    entrada = get_object_or_404(Entrada, slug=slug)
-    if request.method == 'POST':
-        form = ComentarioForm(request.POST)
-        if form.is_valid():
-            comentario = form.save(commit=False)
-            comentario.entrada = entrada
-            comentario.autor = request.user
-            # Si es moderador o admin, aprobar automáticamente
-            if request.user.es_moderador:
-                comentario.aprobado = True
-            comentario.save()
-            messages.success(request, 'Comentario agregado!')
-            return redirect('detalle_entrada', slug=entrada.slug)
-    return redirect('detalle_entrada', slug=entrada.slug)
- """
+
 # Vista para gestionar comentarios (solo moderadores/admins)
 @login_required
 def gestion_comentarios(request):

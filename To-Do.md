@@ -19,13 +19,14 @@
 - [ ] habilitar barra de búsqueda
 - [ ] editar y eliminar comentarios rol administrador
 - [ ] editar y eliminar comentarios rol registrado
-- [ ] mostrar los comentarios del usuario en su perfil
+- [ ] sistema de recuperación de contraseña
 - [ ] **vistas por sección**
 - [ ] **vistas por categoríoa**
 - [ ] **compartiendo arte**
     - [ ] artistas
     - [ ] libros
     - [ ] música
+- [x] ~~mostrar los comentarios del usuario en su perfil~~
 - [x] ~~arreglar titulo de cada página~~
 - [x] ~~mostrar comentarios dependiendo de si están o no aprobados~~
 - [x] ~~se habilita la función de comentar una entrada~~
