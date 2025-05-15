@@ -1,8 +1,12 @@
-from django.urls import path
-from .decorators import rol_requerido
+from django.urls import path, include
+# from rest_framework.routers import DefaultRouter
+
 from . import views
 from page.views import acceso_denegado
-handler403 = acceso_denegado  # Asigna tu vista personalizada
+# from user.api.views import UsuarioListView
+
+
+
 urlpatterns = [
     path('registrate/', views.registro, name='registro'),
     path('login/', views.user_login, name='login'),
@@ -10,10 +14,15 @@ urlpatterns = [
     path('', views.perfil_registrado, name='perfil_registrado'),
     # path('admin', rol_requerido('administrador')(views.perfil_admin), name='perfil_admin'),
     path('admin', views.perfil_admin, name='perfil_admin'),
+    # path('admin/mostrar-usuarios', views.mostrar_usuarios, name='mostrar_usuarios'),
+    # path('api/usuarios/', UsuarioListView.as_view(), name='usuario-api-list'),
     path('admin/comentarios/', views.gestion_comentarios, name='gestion_comentarios'),
     
     # path('admin/usuarios/', views.gestion_usuarios, name='gestion_usuarios'),
     # path('admin/entradas/', views.gestion_entradas, name='gestion_entradas'),
+    path('lista/', views.lista_usuarios, name='lista-usuarios'),
+    #path('admin/usuarios/', views.gestion_usuarios, name='gestion_usuarios'),
+    #path('admin/entradas/', views.gestion_entradas, name='gestion_entradas'),
     # Entradas
     # path('entradas/', views.EntradaListView.as_view(), name='lista_entradas'),
     # path('entradas/<slug:slug>/', views.EntradaDetailView.as_view(), name='detalle_entrada'),

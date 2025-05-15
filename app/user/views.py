@@ -2,18 +2,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import user_passes_test
+from django.utils.decorators import method_decorator
+# from rest_framework import viewsets
+# from rest_framework.decorators import action
 from .decorators import rol_requerido
 from django.contrib import messages
 from blog.models import Entrada, Comentario, Seccion, Categoria
+# from .api.serializers import UsuarioSerializer
 from .forms import RegistroForm, LoginForm
 from .models import Usuario
 from page.models import Page
 from django.core.exceptions import PermissionDenied
-""" from django.urls import reverse_lazy """
-""" from django.contrib.auth.forms import AuthenticationForm """
-""" from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView """
-""" from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin """
+
 
 
 # Vista de registro
@@ -171,3 +171,11 @@ def moderar_comentario(request, pk, accion):
 def is_superuser(user):
     return user.is_superuser or (hasattr(user, 'rol') and user.rol == 'administrador')
 
+@rol_requerido('administrador')
+def lista_usuarios(request):
+    return render(
+        request, 
+        'user/lista_usuarios.html',
+        context={
+        'request': request  # Asegúrate de pasar el request al contexto 
+    })

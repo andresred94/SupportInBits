@@ -8,7 +8,8 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% comment %} {% lorem 9 b random %} {% endcomment %}
-        {{ form.media }}  <!-- Esto carga los scripts necesarios -->        
+        {{ form.media }}  <!-- Esto carga los scripts necesarios -->  
+        <!--titulos-->      
         <div class="mb-3">
             {{ form.titulo.label_tag }}
             {{ form.titulo }}
@@ -18,7 +19,7 @@
                 </div>
             {% endif %}
         </div>
-        
+        <!--contenido-->
         <div class="mb-3">
             {{ form.contenido.label_tag }}
             {{ form.contenido }}
@@ -39,7 +40,7 @@
                 </div>
             {% endif %}
         </div>
-        
+        <!--categoria-->
         <div class="row">
             <div class="col-md-6 mb-3">
                 {{ form.categoria.label_tag }}
@@ -50,7 +51,7 @@
                     </div>
                 {% endif %}
             </div>
-            
+            <!--imagen portada-->
             <div class="col-md-6 mb-3">
                 {{ form.imagen_portada.label_tag }}
                 {{ form.imagen_portada }}
@@ -61,7 +62,7 @@
                 {% endif %}
             </div>
         </div>
-        
+        <!--está publicado-->
         <div class="mb-3 form-check">
             {{ form.publicado }}
             {{ form.publicado.label_tag }}
