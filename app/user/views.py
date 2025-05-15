@@ -171,25 +171,3 @@ def moderar_comentario(request, pk, accion):
 def is_superuser(user):
     return user.is_superuser or (hasattr(user, 'rol') and user.rol == 'administrador')
 
-@user_passes_test(is_superuser, login_url='/identificate/')
-def panel_administrador(request):
-    # Obtener todos los objetos que puede gestionar
-    usuarios = Usuario.objects.all().order_by('-date_joined')
-    entradas = Entrada.objects.all().order_by('-fecha_publicacion')
-    comentarios = Comentario.objects.all().order_by('-fecha_creacion')
-    
-    # Estadísticas
-    total_usuarios = usuarios.count()
-    total_entradas = entradas.count()
-    total_comentarios = comentarios.count()
-    
-    context = {
-        'usuarios': usuarios[:5],  # Últimos 5 registrados
-        'entradas': entradas[:5],  # Últimas 5 entradas
-        'comentarios': comentarios[:5],  # Últimos 5 comentarios
-        'total_usuarios': total_usuarios,
-        'total_entradas': total_entradas,
-        'total_comentarios': total_comentarios,
-    }
-    
-    return render(request, 'admin/panel_administrador.html', context)

@@ -22,9 +22,9 @@ urlpatterns = [
     # path('admin/', include('user.urls')),
     path('', include('page.urls')),
     path('cookies/', include('cookie_consent.urls')),
-    
+    path('accounts/', include('allauth.urls')),  # rutas de allauth
     path('blog/', include('blog.urls')),
     path('identificate/', include('user.urls')),
     path('mi-perfil/', include('user.urls')),
-    path('secret-panel/', admin.site.urls),
+    path('admin/', admin.site.urls),
 ]

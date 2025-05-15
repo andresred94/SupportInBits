@@ -7,7 +7,6 @@
         <h1>{{ entrada.titulo }}</h1>
         <p class="text-muted">
             Publicado por {{ entrada.autor.username }} el {{ entrada.fecha_publicacion|date:"d/m/Y" }}
-            en <a href="#">{{ entrada.categoria.nombre }}</a>
         </p>
         {% if entrada.imagen_portada %}
         <img src="{{ entrada.imagen_portada.url }}" alt="{{ entrada.titulo }}" class="img-fluid rounded mb-3">

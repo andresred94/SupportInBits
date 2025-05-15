@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from user.decorators import rol_requerido
-from django.views.generic import ListView, DetailView, CreateView
-from page.models import Page
-from .models import Entrada, Seccion, Categoria
+from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.db.models import Q, Count
 from django.contrib import messages
+from page.models import Page
+from user.decorators import rol_requerido
+from .models import Entrada, Seccion, Categoria
 from .forms import EntradaForm, ComentarioForm
 
 # Create your views here.
@@ -33,13 +36,15 @@ def home_blog(request):
 @rol_requerido('administrador')
 def crear_entrada(request):
     if request.method == 'POST':
-        form = EntradaForm(request.POST, request.FILES, user=request.user)
+        #form = EntradaForm(request.POST, request.FILES, user=request.user)
+        form = EntradaForm(request.POST, request.FILES)
         if form.is_valid():
             entrada = form.save()
             messages.success(request, f'Entrada "{entrada.titulo}" creada exitosamente!')
             return redirect(entrada.get_absolute_url())
     else:
-        form = EntradaForm(user=request.user)
+        # form = EntradaForm(user=request.user)
+        form = EntradaForm()
     
     return render(request, 'blog/crear_entrada.html', {'form': form})
 
@@ -66,16 +71,51 @@ def crear_comentario(request, slug):
     return redirect('detalle_entrada', slug=entrada.slug)
 
 
-class ListaEntradas(ListView):
+
+
+@method_decorator(rol_requerido('administrador'), name='dispatch')
+class ListaEntradasView(ListView):
     model = Entrada
-    template_name = 'blog/lista_entradas.html'
+    template_name = 'blog/lista_entradas_admin.html'
     context_object_name = 'entradas'
-    paginate_by = 10
-   
+    paginate_by = 10  # Opcional para paginación del lado del servidor
 
     def get_queryset(self):
-        return Entrada.objects.filter(publicado=True).order_by('-fecha_publicacion')
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('search', '').strip()
+        
+        if search_query:
+            queryset = queryset.filter(
+                Q(titulo__icontains=search_query) |
+                Q(contenido__icontains=search_query) |
+                Q(resumen__icontains=search_query) |
+                Q(categoria__nombre__icontains=search_query)
+            ).distinct()
+        
+        return queryset.order_by('-fecha_publicacion')
 
+@method_decorator(rol_requerido('administrador'), name='dispatch')
+class EliminarEntradaView(DeleteView):
+    model = Entrada
+    template_name = 'blog/confirmar_eliminar_entrada.html'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    success_url = reverse_lazy('lista_entradas_admin')
+    roles_requeridos = ['administrador']  # Solo administradores pueden eliminar
+
+    def delete(self, request, *args, **kwargs):
+        entrada = self.get_object()
+        messages.success(request, f'Entrada "{entrada.titulo}" eliminada correctamente')
+        return super().delete(request, *args, **kwargs)
+
+    def dispatch(self, request, *args, **kwargs):
+        # Verificación adicional: solo el autor o superusuario puede eliminar
+        entrada = self.get_object()
+        if not (request.user == entrada.autor or request.user.is_superuser):
+            messages.error(request, "No tienes permiso para eliminar esta entrada")
+            return redirect(entrada.get_absolute_url())
+        return super().dispatch(request, *args, **kwargs)
+         
 class DetalleEntrada(DetailView):
     model = Entrada
     template_name = 'blog/detalle_entrada.html'
@@ -117,19 +157,37 @@ class DetalleEntrada(DetailView):
         
         return context
 
-class EntradasPorCategoria(ListView):
-    template_name = 'blog/entradas_por_categoria.html'
-    context_object_name = 'entradas'
-    paginate_by = 10
-    
-    def get_queryset(self):
-        self.categoria = get_object_or_404(Categoria, slug=self.kwargs['slug_categoria'])
-        return Entrada.objects.filter(categoria=self.categoria, publicado=True).order_by('-fecha_publicacion')
-    
+class EditarEntradaView(UpdateView):
+    model = Entrada
+    form_class = EntradaForm
+    template_name = 'blog/editar_entrada.html'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    success_url = reverse_lazy('lista_entradas_admin')
+    roles_requeridos = ['administrador', 'editor']  # Requiere rol admin o editor
+
+    def form_valid(self, form):
+        messages.success(self.request, f'Entrada "{form.instance.titulo}" actualizada correctamente')
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categoria'] = self.categoria
+        context['page'] = Page.objects.get(id=6)  # Ajusta el ID según tu configuración
         return context
+
+class EntradasPorCategoria(ListView):
+    model = Entrada
+    template_name = 'blog/entradas_por_categoria.html'
+    context_object_name = 'entradas'
+
+    def get_queryset(self):
+        slug_seccion = self.kwargs['slug_seccion']
+        slug_categoria = self.kwargs['slug_categoria']
+        return Entrada.objects.filter(
+            categoria__slug=slug_categoria,
+            categoria__seccion__slug=slug_seccion,
+            publicado=True
+        )
 
 class EntradasPorSeccion(ListView):
     template_name = 'blog/entradas_por_seccion.html'
@@ -139,9 +197,19 @@ class EntradasPorSeccion(ListView):
     def get_queryset(self):
         self.seccion = get_object_or_404(Seccion, slug=self.kwargs['slug_seccion'])
         categorias = self.seccion.categorias.all()
-        return Entrada.objects.filter(categoria__in=categorias, publicado=True).order_by('-fecha_publicacion')
+        return Entrada.objects.filter(
+            categoria__in=categorias, 
+            publicado=True
+        ).select_related('categoria', 'autor').order_by('-fecha_publicacion')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['seccion'] = self.seccion
+        # Categorías de la sección con conteo de entradas publicadas
+        context['categorias'] = self.seccion.categorias.annotate(
+            num_entradas=Count(  # Usa Count directamente (sin models.)
+                'entradas',
+                filter=Q(entradas__publicado=True)  # Usa Q directamente
+            )
+        )
         return context

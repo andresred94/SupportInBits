@@ -3,11 +3,12 @@
 {% block title %}Crear Nueva Entrada{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container">
     <h2>Crear Nueva Entrada</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {% lorem 9 b random %}
+        {% comment %} {% lorem 9 b random %} {% endcomment %}
+        {{ form.media }}  <!-- Esto carga los scripts necesarios -->        
         <div class="mb-3">
             {{ form.titulo.label_tag }}
             {{ form.titulo }}

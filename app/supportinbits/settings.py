@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i2791=hxsj@57o_q*#wdlp@*6b69y6c1c58)wo8##f7(mu%41f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -35,17 +35,27 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # apps Django por defecto
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # allauth
+    'django.contrib.sites',  # requerido por allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    # mis apps
     'blog.apps.BlogConfig',
     'page.apps.PageConfig',
     'user.apps.UserConfig',
+    # otras apps
     'bootstrap5',
     'cookie_consent',
+    'tinymce',
     
 ]
 
@@ -55,9 +65,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Añade esta línea
+    'whitenoise.middleware.WhiteNoiseMiddleware',  
 
 ]
 
@@ -170,3 +181,5 @@ COOKIE_CONSENT_OPTIONS = {
         "required": False,
     }
 }
+
+

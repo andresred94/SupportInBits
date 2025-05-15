@@ -18,12 +18,18 @@ Esto hará que se copie el contenido exacto en staticFiles
   --lemon-lime: #e4ff1a;
   --orangepantone: #f26419;
   --texto-boton: #faff24;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --banner-bg: #f0f0f0;
 }
+
 
 body {
   min-height: 100vh;
   margin: 0;
   background-color: var(--bk_principal);
+  color: var(--tx-nm-lg);
+  transition: background-color 0.3s ease, color 0.3s ease;
   a {
     color: var(--tx-nm-lg);
   }
@@ -32,6 +38,28 @@ body {
     box-shadow: inset 0 -2px 0 var(--indigoEnlaceBread);
   }
   header {
+    .toggle-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    /* Modo oscuro */
+    .dark-mode {
+      --bg-color: #121212;
+      --text-color: #f1f1f1;
+      --banner-bg: #1e1e1e;
+      --button-bg: #4caf50;
+      --button-hover: #45a049;
+    }
+    
     .dropdown-item:active {
       color: var(--texto-boton);
       background-color: var(--indigoEnlaceBread);

@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <title>
       {% if user.is_authenticated %}
         {% if page.titulo == " | Support In Bits" %}
@@ -20,10 +19,10 @@
     <meta name="HandheldFriendly" content="{{ page.m_handF }}" />
     <meta name="MobileOptimized" content="{{ page.m_mobileOp }}" />
     <meta http-equiv="content-language" content="es"/>
-    <script type="text/javascript" src="{% static 'cookie_consent/cookiebar.js' %}"></script>
-            <!-- TinyMCE CDN -->
+    
+    <!-- TinyMCE CDN -->
     <script src="https://cdn.tiny.cloud/1/4ctror8ztivyu5cgoasl3ilo4pmcop3kh56f9ezfohvamo05/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
+    
     <!-- axe-core -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.8.2/axe.min.js"></script>
     <!-- CSS de Bootstrap -->
@@ -32,11 +31,17 @@
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
     <link rel="stylesheet" href="{% static 'supportinbits/css/global.css' %}" />   
+    
   </head>
-  <body  class="d-flex flex-column h-100">
+  <body  class="d-flex flex-column h-100 dark-mode">
     <div class="container" id="contenedor-pricipal">
       <!--encabezado-->
       <header>
+        <div class="container-fluid banner">
+          <div class="d-flex justify-content-end ">
+            <button id="toggle-mode" class="toggle-btn btn"><i class="bi bi-moon-fill p-2"></i></button>
+          </div>
+        </div>
         <div class="px-3 py-2 text-bg-dark border-bottom">
           <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light d-flex flex-lg-wrap">
@@ -94,7 +99,7 @@
 
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="#">Plantillas</a>
+                      <a class="nav-link" aria-current="page" href="/plantillas">Plantillas</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="/blog">Blog</a>
@@ -121,8 +126,8 @@
           </div><!--container-->
       </header>
 
-      <!--breadcrumps-->
-      <nav aria-label="Migas de pan" class="container mt-4">
+      <!--breadcrumbs-->
+      <nav aria-label="Migas de pan" class="container">
           <ol class="breadcrumb">
               {% for breadcrumb in breadcrumbs %}
                   <li class="breadcrumb-item{% if forloop.last %} active{% endif %}" {% if forloop.last %}aria-current="page"{% endif %}>
@@ -164,22 +169,11 @@
 
   </div>
     {% load static %}
-    
+    <script src="{% static 'supportinbits/js/global.js' %}"></script>   
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{% static 'cookie_consent/cookiebar.module.js' %}"></script>
+    {% comment %} <script src="{% static 'cookie_consent/cookiebar.module.js' %}"></script> {% endcomment %}
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          tinymce.init({
-              selector: '.tinymce-editor',
-              plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
-              toolbar_mode: 'floating',
-              toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-              height: 400,
-              content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-          });
-      });
-      </script>
+
       
 {% comment %}     {% if request|cookie_consent_enabled %}
         <script type="text/javascript">

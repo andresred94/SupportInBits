@@ -57,7 +57,14 @@ def acceso_denegado(request,exception=None):
 def csrf_failure(request,exception=None):
     return HttpResponseForbidden
 
-  
+
+def plantillas(request):
+    return render(
+        request,
+        'plantillas.html',
+    )
+
+
 def test(request):
     return render(
         request,

@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django.conf import settings
 from django.core.validators import MinLengthValidator
+from tinymce.models import HTMLField
 
 class Comentario(models.Model):
     entrada = models.ForeignKey('Entrada', on_delete=models.CASCADE, related_name='comentarios')
@@ -88,6 +89,8 @@ class Entrada(models.Model):
     )
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     contenido = models.TextField()
+    
+    #contenido = HTMLField()  # Reemplaza el TextField original
     resumen = models.TextField(max_length=500, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, related_name='entradas')
     fecha_publicacion = models.DateTimeField(auto_now_add=True)

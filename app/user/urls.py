@@ -8,12 +8,12 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('', views.perfil_registrado, name='perfil_registrado'),
-    #path('admin', rol_requerido('administrador')(views.perfil_admin), name='perfil_admin'),
+    # path('admin', rol_requerido('administrador')(views.perfil_admin), name='perfil_admin'),
     path('admin', views.perfil_admin, name='perfil_admin'),
     path('admin/comentarios/', views.gestion_comentarios, name='gestion_comentarios'),
     
-    #path('admin/usuarios/', views.gestion_usuarios, name='gestion_usuarios'),
-    #path('admin/entradas/', views.gestion_entradas, name='gestion_entradas'),
+    # path('admin/usuarios/', views.gestion_usuarios, name='gestion_usuarios'),
+    # path('admin/entradas/', views.gestion_entradas, name='gestion_entradas'),
     # Entradas
     # path('entradas/', views.EntradaListView.as_view(), name='lista_entradas'),
     # path('entradas/<slug:slug>/', views.EntradaDetailView.as_view(), name='detalle_entrada'),

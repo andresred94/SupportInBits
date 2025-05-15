@@ -1,12 +1,14 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
 
-<h1>Page_Test</h1>
-<div id="pages-container"></div>
-{% if user.is_authenticated %}
-    <p>Bienvenido, {{ user.username }}!</p>
-{% else %}
-    <p>Por favor inicia sesión.</p>
-{% endif %}
+<div class="container" id="container-plantillas">
+  <h1>Plantillas accesibles</h1>
+  <p>En esta página encontrarás plantillas a páginas web estáticas
+    que podrás copiar y pegar para usarlo para lo que quieras. 
+  </p>
+
+</div>
 {% comment %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
