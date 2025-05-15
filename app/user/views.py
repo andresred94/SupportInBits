@@ -3,16 +3,17 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-# from rest_framework import viewsets
-# from rest_framework.decorators import action
-from .decorators import rol_requerido
+from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 from blog.models import Entrada, Comentario, Seccion, Categoria
-# from .api.serializers import UsuarioSerializer
+from blog.forms import ComentarioForm
+from page.models import Page
+from .decorators import rol_requerido
 from .forms import RegistroForm, LoginForm
 from .models import Usuario
-from page.models import Page
-from django.core.exceptions import PermissionDenied
+# from .api.serializers import UsuarioSerializer
+# from rest_framework.decorators import action
+# from rest_framework import viewsets
 
 
 
@@ -118,6 +119,20 @@ def perfil_registrado(request):
         context
     )
 
+@login_required
+def editar_comentario(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id, autor=request.user)
+    
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST, instance=comentario)
+        if form.is_valid():
+            form.save()
+            return redirect('perfil_registrado')
+    else:
+        form = ComentarioForm(instance=comentario)
+    
+    return render(request, 'user/editar_comentario.html', {'form': form, 'comentario': comentario})
+
 def perfil_admin(request):
     if not request.user.is_superuser:
         raise PermissionDenied
@@ -133,7 +148,7 @@ def perfil_admin(request):
 def logout_view(request):
     logout(request)
     messages.info(request, 'Has cerrado sesión correctamente.')
-    return redirect('home')
+    return redirect('inicio')
 
 
 # Vista para gestionar comentarios (solo moderadores/admins)

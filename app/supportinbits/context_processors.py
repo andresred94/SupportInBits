@@ -20,10 +20,6 @@ def breadcrumbs(request):
                         'name': 'Blog',
                         'url': reverse('home_blog')
                     })
-                    #breadcrumbs.append({
-                    #    'name': entrada.titulo.title(),
-                    #    'url': reverse('detalle_entrada', kwargs={'slug': entrada.slug})
-                    #})
                     breadcrumbs.append({
                         'name': seccion.nombre.title(),
                         'url': reverse('entradas_por_seccion', kwargs={'slug_seccion': seccion.slug})

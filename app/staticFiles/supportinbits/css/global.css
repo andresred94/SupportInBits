@@ -53,9 +53,11 @@ body {
     }
     /* Modo oscuro */
     .dark-mode {
-      --bg-color: #1e1e1e;
-      --text-color: #f5f5f5;
-      --banner-bg: #2c2c2c;
+      --bg-color: #121212;
+      --text-color: #f1f1f1;
+      --banner-bg: #1e1e1e;
+      --button-bg: #4caf50;
+      --button-hover: #45a049;
     }
     
     .dropdown-item:active {
@@ -88,6 +90,67 @@ body {
       color: var(--indigoEnlaceBread);
     }
   }
+
+/* Estilos del botón de accesibilidad */
+/* Estilo del botón principal */
+#accessibility-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #0066cc;
+  color: white;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Panel de opciones */
+#accessibility-panel {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  width: 55vw;
+}
+
+#accessibility-panel h2 {
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+#accessibility-panel button {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Estilos para alto contraste */
+.high-contrast {
+  background-color: black !important;
+  color: white !important;
+}
+
+.high-contrast a {
+  color: yellow !important;
+}
 
   font-family: "fuente-principal", sans-serif;
   .container {

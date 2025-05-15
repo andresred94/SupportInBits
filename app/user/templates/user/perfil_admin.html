@@ -14,6 +14,7 @@
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-entradas" aria-controls="offcanvasWithBothOptions">Entradas</button>
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-paginas" aria-controls="offcanvasWithBothOptions">Páginas</button>
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-usuario" aria-controls="offcanvasWithBothOptions">Usuarios</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-comentarios" aria-controls="offcanvasWithBothOptions">Comentarios</button>
     
             
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-entradas" aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -23,7 +24,7 @@
               </div>
               <div class="offcanvas-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="/blog/entradas/nueva">Crear entrada</a></li>
+                  <li class="list-group-item"><a href="/blog/entrada/nueva">Crear entrada</a></li>
                   <li class="list-group-item"><a href="/blog/entradas-admin">Buscar entrada</a></li>
                 </ul>                
               </div>
@@ -53,6 +54,18 @@
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><a>Crear usuario</a></li>
                   <li class="list-group-item"><a href="/mi-perfil/admin/mostrar-usuarios">Mostrar usuarios</a></li>
+                <ul>
+              </div>
+            </div>
+
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-comentarios" aria-labelledby="offcanvasWithBothOptionsLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Panel de administración de comentarios</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a href="/blog/comentarios-admin">Ver comentarios</a></li>
                 <ul>
               </div>
             </div>

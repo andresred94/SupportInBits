@@ -1,6 +1,6 @@
 from django.urls import path, include
 # from rest_framework.routers import DefaultRouter
-
+from .views import editar_comentario
 from . import views
 from page.views import acceso_denegado
 # from user.api.views import UsuarioListView
@@ -17,7 +17,7 @@ urlpatterns = [
     # path('admin/mostrar-usuarios', views.mostrar_usuarios, name='mostrar_usuarios'),
     # path('api/usuarios/', UsuarioListView.as_view(), name='usuario-api-list'),
     path('admin/comentarios/', views.gestion_comentarios, name='gestion_comentarios'),
-    
+    path('comentario/editar/<int:comentario_id>/', editar_comentario, name='editar_comentario'),
     # path('admin/usuarios/', views.gestion_usuarios, name='gestion_usuarios'),
     # path('admin/entradas/', views.gestion_entradas, name='gestion_entradas'),
     path('lista/', views.lista_usuarios, name='lista-usuarios'),

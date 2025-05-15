@@ -85,3 +85,18 @@ class ComentarioForm(forms.ModelForm):
         labels = {
             'contenido': ''
         }
+
+class EditarComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['contenido']
+        widgets = {
+            'contenido': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 4,
+                'placeholder': 'Escribe tu comentario aquí...'
+            }),
+        }
+        labels = {
+            'contenido': 'Editar comentario'
+        }

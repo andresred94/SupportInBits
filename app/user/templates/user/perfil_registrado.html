@@ -9,7 +9,7 @@
   <p>correo:  {{ user.email }}</p>
 
   <p class="fs-3">Configuraciones: </p>
-
+  <!--panel-admin-->
   <div class="row">
       <div class="col">
 
@@ -75,12 +75,11 @@
                     <div class="card-header">
                         <h4>Comentarios Recientes</h4>
                     </div>
-                    
+
                     <div class="card-body">
                         {% if comentarios %}
                             <ul class="list-group list-group-flush">
                                 {% for comentario in comentarios %}
-
                                 <li class="list-group-item">
                                     <div class="d-flex justify-content-between">
                                         <div>
@@ -97,9 +96,18 @@
                                                 {% endif %}
                                             </small>
                                         </div>
-                                        <div>
-                                            {% if request.user == comentario.autor or request.user.is_staff %}
-                                            <a href="#" class="btn btn-sm btn-outline-secondary">Editar</a>
+                                        <div class="d-flex flex-column justify-content-around">
+                                            {% if request.user == comentario.autor %}
+                                            <a href="{% url 'editar_comentario' comentario.id %}" 
+                                               class="btn btn-sm btn-outline-primary">Editar</a>
+                                            <form method="post" action="{% url 'eliminar_comentario' comentario.id %}" 
+                                                  class="d-inline">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                                        onclick="return confirm('¿Eliminar este comentario?')">
+                                                    Eliminar
+                                                </button>
+                                            </form>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -109,7 +117,8 @@
                         {% else %}
                             <p class="text-muted">Este usuario no ha realizado comentarios aún.</p>
                         {% endif %}
-                    </div>
+                        </div>
+                    
                 </div>
             </div>
         </div>

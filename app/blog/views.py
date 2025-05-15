@@ -8,30 +8,31 @@ from django.db.models import Q, Count
 from django.contrib import messages
 from page.models import Page
 from user.decorators import rol_requerido
-from .models import Entrada, Seccion, Categoria
+from .models import Entrada, Seccion, Categoria, Comentario
 from .forms import EntradaForm, ComentarioForm
 
 # Create your views here.
 
-def home_blog(request):
-    # Obtener los datos de la página desde Page
-    pagina = Page.objects.get(id=6)  # Asegúrate de que el ID 6 corresponde a la página del blog
-    
-    # Obtener todas las entradas publicadas ordenadas por fecha (más recientes primero)
-    entradas = Entrada.objects.filter(publicado=True).order_by('-fecha_publicacion')
-    
-    # Obtener todas las secciones con sus categorías para el sidebar
-    secciones = Seccion.objects.prefetch_related('categorias').all()
-    
-    return render(
-        request,
-        'blog/home_blog.html',  # Asegúrate de que esta ruta es correcta
-        context={
-            'page': pagina,
-            'entradas': entradas,
-            'secciones': secciones
-        }
-    )
+@method_decorator(rol_requerido('registrado'), name='dispatch')
+class MisComentariosView(ListView):
+    model = Comentario
+    template_name = 'blog/mis_comentarios.html'
+    context_object_name = 'comentarios'
+    paginate_by = 10
+
+    def get_queryset(self):
+        # Solo mostrar los comentarios del usuario actual
+        return Comentario.objects.filter(
+            autor=self.request.user
+        ).order_by('-fecha_creacion')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Agregar conteo de comentarios por estado
+        context['total_comentarios'] = self.get_queryset().count()
+        context['comentarios_aprobados'] = self.get_queryset().filter(aprobado=True).count()
+        context['comentarios_pendientes'] = self.get_queryset().filter(aprobado=False).count()
+        return context
 
 @rol_requerido('administrador')
 def crear_entrada(request):
@@ -116,6 +117,139 @@ class EliminarEntradaView(DeleteView):
             return redirect(entrada.get_absolute_url())
         return super().dispatch(request, *args, **kwargs)
          
+
+@method_decorator(rol_requerido('administrador'), name='dispatch')
+class EditarEntradaView(UpdateView):
+    model = Entrada
+    form_class = EntradaForm
+    template_name = 'blog/editar_entrada.html'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    success_url = reverse_lazy('lista_entradas_admin')
+    roles_requeridos = ['administrador', 'editor']  # Requiere rol admin o editor
+
+    def form_valid(self, form):
+        messages.success(self.request, f'Entrada "{form.instance.titulo}" actualizada correctamente')
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = Page.objects.get(id=6)  # Ajusta el ID según tu configuración
+        return context
+    
+@method_decorator(rol_requerido('administrador'), name='dispatch') 
+class ListaComentariosView(ListView):
+    model = Comentario
+    template_name = 'blog/lista_comentarios_admin.html'
+    context_object_name = 'comentarios'
+    paginate_by = 20
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('search', '').strip()
+        filtro_aprobacion = self.request.GET.get('aprobacion', '').strip()
+        
+        # Filtro por búsqueda
+        if search_query:
+            queryset = queryset.filter(
+                Q(contenido__icontains=search_query) |
+                Q(autor__username__icontains=search_query) |
+                Q(entrada__titulo__icontains=search_query)
+            ).distinct()
+        
+        # Filtro por estado de aprobación
+        if filtro_aprobacion.lower() == 'aprobados':
+            queryset = queryset.filter(aprobado=True)
+        elif filtro_aprobacion.lower() == 'pendientes':
+            queryset = queryset.filter(aprobado=False)
+        
+        return queryset.order_by('-fecha_creacion')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Agregamos el filtro actual al contexto para usarlo en la plantilla
+        context['filtro_aprobacion'] = self.request.GET.get('aprobacion', '')
+        return context    
+
+rol_requerido('administrador')
+def toggle_aprobacion_comentario(request, pk):
+    comentario = get_object_or_404(Comentario, pk=pk)
+    comentario.aprobado = not comentario.aprobado
+    comentario.save()
+    
+    messages.success(request, f'Comentario {"aprobado" if comentario.aprobado else "desaprobado"} correctamente.')
+    return redirect('lista_comentarios')
+
+rol_requerido('administrador')
+def eliminar_comentario(request, pk):
+    comentario = get_object_or_404(Comentario, pk=pk)
+    
+    if request.method == 'POST':
+        comentario.delete()
+        messages.success(request, 'Comentario eliminado correctamente.')
+        return redirect('lista_comentarios')
+    
+    # Si es GET, mostrar confirmación (esto se manejaría con una plantilla modal)
+    return redirect('lista_comentarios')
+
+def home_blog(request):
+    # Obtener los datos de la página desde Page
+    pagina = Page.objects.get(id=6)  # Asegúrate de que el ID 6 corresponde a la página del blog
+    
+    # Obtener todas las entradas publicadas ordenadas por fecha (más recientes primero)
+    entradas = Entrada.objects.filter(publicado=True).order_by('-fecha_publicacion')
+    
+    # Obtener todas las secciones con sus categorías para el sidebar
+    secciones = Seccion.objects.prefetch_related('categorias').all()
+    
+    return render(
+        request,
+        'blog/home_blog.html',  # Asegúrate de que esta ruta es correcta
+        context={
+            'page': pagina,
+            'entradas': entradas,
+            'secciones': secciones
+        }
+    )
+
+class EntradasPorCategoria(ListView):
+    model = Entrada
+    template_name = 'blog/entradas_por_categoria.html'
+    context_object_name = 'entradas'
+
+    def get_queryset(self):
+        slug_seccion = self.kwargs['slug_seccion']
+        slug_categoria = self.kwargs['slug_categoria']
+        return Entrada.objects.filter(
+            categoria__slug=slug_categoria,
+            categoria__seccion__slug=slug_seccion,
+            publicado=True
+        )
+
+class EntradasPorSeccion(ListView):
+    template_name = 'blog/entradas_por_seccion.html'
+    context_object_name = 'entradas'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        self.seccion = get_object_or_404(Seccion, slug=self.kwargs['slug_seccion'])
+        categorias = self.seccion.categorias.all()
+        return Entrada.objects.filter(
+            categoria__in=categorias, 
+            publicado=True
+        ).select_related('categoria', 'autor').order_by('-fecha_publicacion')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['seccion'] = self.seccion
+        # Categorías de la sección con conteo de entradas publicadas
+        context['categorias'] = self.seccion.categorias.annotate(
+            num_entradas=Count(  # Usa Count directamente (sin models.)
+                'entradas',
+                filter=Q(entradas__publicado=True)  # Usa Q directamente
+            )
+        )
+        return context
 class DetalleEntrada(DetailView):
     model = Entrada
     template_name = 'blog/detalle_entrada.html'
@@ -155,61 +289,4 @@ class DetalleEntrada(DetailView):
         for comentario in context['comentarios']:
             comentario.current_user = self.request.user
         
-        return context
-
-class EditarEntradaView(UpdateView):
-    model = Entrada
-    form_class = EntradaForm
-    template_name = 'blog/editar_entrada.html'
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
-    success_url = reverse_lazy('lista_entradas_admin')
-    roles_requeridos = ['administrador', 'editor']  # Requiere rol admin o editor
-
-    def form_valid(self, form):
-        messages.success(self.request, f'Entrada "{form.instance.titulo}" actualizada correctamente')
-        return super().form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page'] = Page.objects.get(id=6)  # Ajusta el ID según tu configuración
-        return context
-
-class EntradasPorCategoria(ListView):
-    model = Entrada
-    template_name = 'blog/entradas_por_categoria.html'
-    context_object_name = 'entradas'
-
-    def get_queryset(self):
-        slug_seccion = self.kwargs['slug_seccion']
-        slug_categoria = self.kwargs['slug_categoria']
-        return Entrada.objects.filter(
-            categoria__slug=slug_categoria,
-            categoria__seccion__slug=slug_seccion,
-            publicado=True
-        )
-
-class EntradasPorSeccion(ListView):
-    template_name = 'blog/entradas_por_seccion.html'
-    context_object_name = 'entradas'
-    paginate_by = 10
-    
-    def get_queryset(self):
-        self.seccion = get_object_or_404(Seccion, slug=self.kwargs['slug_seccion'])
-        categorias = self.seccion.categorias.all()
-        return Entrada.objects.filter(
-            categoria__in=categorias, 
-            publicado=True
-        ).select_related('categoria', 'autor').order_by('-fecha_publicacion')
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['seccion'] = self.seccion
-        # Categorías de la sección con conteo de entradas publicadas
-        context['categorias'] = self.seccion.categorias.annotate(
-            num_entradas=Count(  # Usa Count directamente (sin models.)
-                'entradas',
-                filter=Q(entradas__publicado=True)  # Usa Q directamente
-            )
-        )
         return context

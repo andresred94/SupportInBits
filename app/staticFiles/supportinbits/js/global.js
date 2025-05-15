@@ -6,9 +6,8 @@ toggleBtn.addEventListener('click', () => {
 
   // Cambiar el texto del botón según el modo actual
   if (body.classList.contains('dark-mode')) {
-    toggleBtn.textContent = 'Modo Claro ☀️';
+    toggleBtn.innerHTML = '<i class="bi bi-sun-fill p-2"></i>';
   } else {
-    toggleBtn.textContent = 'Modo Oscuro 🌙';
+    toggleBtn.innerHTML = '<i class="bi bi-moon-fill p-2"></i>';
   }
 });
-console.log("hola");
