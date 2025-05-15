@@ -58,7 +58,7 @@
         <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ seccion.id }}" aria-expanded="false" aria-controls="collapse{{ seccion.id }}">
                 <p class="mb-0 h6">{{ seccion.nombre }} 
-                  <a href="{% url 'entradas_por_seccion' slug_seccion=seccion.slug %}">(Slug: {{ seccion.slug }})
+                  <a href="{% url 'entradas_por_seccion' slug_seccion=seccion.slug %}">{% comment %} (Slug: {{ seccion.slug }}) {% endcomment %}
                      
                   </a>
                 </p>  <!-- DEBUG: Muestra el slug -->
