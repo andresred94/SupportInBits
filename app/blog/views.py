@@ -6,12 +6,12 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.db.models import Q, Count
 from django.contrib import messages
+from django.template.loader import render_to_string
 from page.models import Page
 from user.decorators import rol_requerido
 from .models import Entrada, Seccion, Categoria, Comentario
 from .forms import EntradaForm, ComentarioForm
-
-# Create your views here.
+from django.http import JsonResponse
 
 @method_decorator(rol_requerido('registrado'), name='dispatch')
 class MisComentariosView(ListView):
@@ -211,6 +211,36 @@ def home_blog(request):
             'secciones': secciones
         }
     )
+
+""" def buscar_entradas(request):
+    consulta = request.GET.get('q', '')
+    resultados = Entrada.objects.filter(
+        Q(titulo__icontains=consulta) |
+        Q(contenido__icontains=consulta),
+        publicado=True
+    )
+    return render(
+        request, 'blog/resultados_busqueda.html', {
+        'consulta': consulta,
+        'resultados': resultados
+    }) """
+
+def buscar_entradas_ajax(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        consulta = request.GET.get('q', '')
+        resultados = Entrada.objects.filter(
+            Q(titulo__icontains=consulta) |
+            Q(contenido__icontains=consulta),
+            publicado=True
+        )
+        html = render_to_string('blog/resultados_ajax.html',{
+            'resultados': resultados,
+            'consulta': consulta
+        })
+        #return JsonResponse({'html': html})
+        return JsonResponse({'html': html})
+    
+    return JsonResponse({'error': 'Peticion no valida'}, status=400)
 
 class EntradasPorCategoria(ListView):
     model = Entrada

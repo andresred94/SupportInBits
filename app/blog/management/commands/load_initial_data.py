@@ -46,77 +46,77 @@ class Command(BaseCommand):
         # Cargar páginas (nuevo)
         pages_data = [
             {
-                'titulo': 'Support In Bits | Inicio',
+                'titulo': 'Inicio - Support In Bits',
                 'm_descri': 'Web desarrollada para fomentar la creación de aplicaciones web usables y accesibles',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'index'
             },
             {
-                'titulo': 'Support In Bits | Política de cookies',
+                'titulo': 'Política de cookies - Support In Bits',
                 'm_descri': 'Página web con toda la información relacionada sobre qué hacemos con sus datos en Support In Bits',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
             },
             {
-                'titulo': 'Support In Bits | Quien soy',
+                'titulo': 'Quién soy - Support In Bits',
                 'm_descri': 'En esta página web se describe al creador de la web',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
             },
             {
-                'titulo': 'Support In Bits | Políticas de privacidad',
+                'titulo': 'Políticas de privacidad - Support In Bits',
                 'm_descri': 'En esta página se muestra las políticas de privacidad de Support In Bits',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
             },
             {
-                'titulo': 'Support In Bits | Preguntas frecuentes',
+                'titulo': 'Preguntas frecuentes - Support In Bits',
                 'm_descri': 'En esta página encontrarás las respuestas a tus preguntas de cómo desarrollar una web accesible',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'index'
             },
             {
-                'titulo': 'Support In Bits | Blog',
+                'titulo': 'Blog - Support In Bits',
                 'm_descri': 'En esta página encontrarás todos las entradas publicadas de diversos temas sobre informática y accesibilidad',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'index'
             },
             {
-                'titulo': 'Support In Bits | Crear entrada',
+                'titulo': 'Crear entrada - Support In Bits',
                 'm_descri': 'En esta página puedes crear tu entrada y comprobar que cumple con los requisitos de accesibilidad',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
             },
             {
-                'titulo': 'Support In Bits | Indentifícate',
+                'titulo': 'Indentifícate - Support In Bits',
                 'm_descri': 'En esta página podrás crear una cuenta o iniciar sesión si ya tienes una',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
             },
             {
-                'titulo': 'Support In Bits | Crear cuenta',
+                'titulo': 'Crear cuenta - Support In Bits',
                 'm_descri': 'En esta página podrás crear una cuenta y unirte a nuestra comunidad',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
             },
             {
-                'titulo': ' | Support In Bits',
+                'titulo': ' - Support In Bits',
                 'm_descri': 'Web desarrollada para fomentar la creación de aplicaciones web usables y accesibles',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
             },
             {
-                'titulo': 'Error 403 | Support In Bits',
+                'titulo': 'Error 403 - Support In Bits',
                 'm_descri': 'Ha ocurrido un error 403. Ponte en contacto con el administrador',
                 'm_handF': 'true',
                 'm_mobileOp': 'width',

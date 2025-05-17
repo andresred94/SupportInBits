@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     # otras apps
     'bootstrap5',
     'cookie_consent',
+    'tinymce',
     # 'rest_framework_datatables',
     # 'rest_framework',
     

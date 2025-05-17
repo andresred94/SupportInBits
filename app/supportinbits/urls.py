@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from blog.views import buscar_entradas_ajax
 
 urlpatterns = [
     # path('admin/', perfil_admin, name="perfil_admin"),
@@ -27,4 +27,5 @@ urlpatterns = [
     path('identificate/', include('user.urls')),
     path('mi-perfil/', include('user.urls')),
     path('admin/', admin.site.urls),
+    path('buscar/ajax/', buscar_entradas_ajax, name='buscar_entradas_ajax'),
 ]

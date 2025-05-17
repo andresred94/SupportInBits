@@ -30,7 +30,7 @@ Esto hará que se copie el contenido exacto en staticFiles
 }
 
 .high-contrast a {
-  color: #00FF33 !important;
+  color: #00ff33 !important;
   background-color: black !important;
 }
 .high-contrast .card-body {
@@ -63,37 +63,37 @@ Esto hará que se copie el contenido exacto en staticFiles
   color: white !important;
   border-color: white !important;
 }
-.high-contrast .card-header  {
+.high-contrast .card-header {
   background-color: black !important;
   color: white !important;
   border-color: white !important;
 }
-.high-contrast .btn.dropdown-toggle{
+.high-contrast .btn.dropdown-toggle {
   background-color: black !important;
   color: yellow !important;
   border-color: yellow !important;
 }
-.high-contrast .toggle-btn.btn{
+.high-contrast .toggle-btn.btn {
   background-color: black !important;
   color: yellow !important;
   border-color: yellow !important;
 }
-.high-contrast .btn-primary{
+.high-contrast .btn-primary {
   background-color: black !important;
   color: yellow !important;
   border-color: yellow !important;
 }
 
-.high-contrast .accordion-item{
+.high-contrast .accordion-item {
   background-color: black !important;
 }
-.high-contrast .accordion-button{
+.high-contrast .accordion-button {
   background-color: black !important;
   color: yellow !important;
   border-color: yellow !important;
 }
-.high-contrast .breadcrumb-item.active{
-  color: #00E1FF !important;
+.high-contrast .breadcrumb-item.active {
+  color: #00e1ff !important;
   border-color: yellow !important;
 }
 
@@ -164,12 +164,33 @@ body {
     }
   }
 
+  .search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  #resultados-busqueda {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
   /* Estilos del botón de accesibilidad */
   /* Estilo del botón principal */
   #accessibility-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 700px;
+    right: 0px;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -184,7 +205,7 @@ body {
   /* Panel de opciones */
   #accessibility-panel {
     position: fixed;
-    bottom: 100px;
+    bottom: 500px;
     right: 20px;
     background: white;
     padding: 15px;
@@ -214,6 +235,14 @@ body {
     display: none;
   }
 
+  #boton-up {
+    position: fixed;
+    bottom: 100px;
+    right: 2%;
+    cursor: pointer;
+    display: none; /* Oculto por defecto */
+    z-index: 1000;
+  }
   font-family: "fuente-principal", sans-serif;
   .container {
     flex: 1; /* Esto hace que el contenido ocupe el espacio disponible */

@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}Crear Nueva Entrada{% endblock %}
+{% block title %}
+Crear Nueva Entrada | Support In Bits
+{% endblock %}
 
 {% block content %}
 <div class="container">
     <h2>Crear Nueva Entrada</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        {{ form.media }}    
         {% comment %} {% lorem 9 b random %} {% endcomment %}
-        {{ form.media }}  <!-- Esto carga los scripts necesarios -->  
         <!--titulos-->      
         <div class="mb-3">
             {{ form.titulo.label_tag }}

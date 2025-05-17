@@ -5,12 +5,14 @@
 <html lang="en">
   <head>
     <title>
+      {% block title %}
       {% if user.is_authenticated %}
         {% if page.titulo == " | Support In Bits" %}
           {{ user.username }}
         {% endif %}
       {% endif %}
       {{ page.titulo}} 
+      {% endblock %}
     </title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +21,8 @@
     <meta name="HandheldFriendly" content="{{ page.m_handF }}" />
     <meta name="MobileOptimized" content="{{ page.m_mobileOp }}" />
     <meta http-equiv="content-language" content="es"/>
-    
+
+    <script src="{% static 'supportinbits/js/accessibility.js' %}"></script>   
     <!-- TinyMCE CDN -->
     <script src="https://cdn.tiny.cloud/1/4ctror8ztivyu5cgoasl3ilo4pmcop3kh56f9ezfohvamo05/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     
@@ -52,10 +55,16 @@
             <nav class="navbar navbar-expand-lg navbar-light d-flex flex-lg-wrap">
               <div class="container-fluid">
                 <a class="navbar-brand" href="/" aria-label="home"><i class="bi bi-house fs-1"></i></a>
-
-                <form class="col-6 col-lg-6 mb-2 mb-lg-0 me-lg-auto" role="search">
-                  <input type="search" class="form-control" placeholder="Buscar en Support In Bits" aria-label="Search">
-                </form>
+                <!--barra de búsqueda-->
+                <div class="search-container col-6 col-lg-6 mb-2 mb-lg-0 me-lg-auto">
+                  <form id="form-busqueda" role="search"> 
+                    <input type="search" id="input-busqueda" class="form-control" name="q" placeholder="Buscar en Support In Bits" aria-label="Buscar"> 
+                  </form>
+                  <!-- Aquí se mostrarán los resultados --> 
+                  <div id="resultados-busqueda" class="results-dropdown"></div>
+                </div>
+                
+                <i id="boton-up" class="bi bi-arrow-up-circle display-5"></i>
 
                 <button class="navbar-toggler" type="button" aria-label="boton navegador" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" >
                   <span class="navbar-toggler-icon"></span>
@@ -235,8 +244,53 @@
 
   </div>
     {% load static %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const input = document.getElementById('input-busqueda');
+        const results = document.getElementById('resultados-busqueda');
+
+        let debounceTimer;
+
+        input.addEventListener('input', function () {
+          const query = input.value.trim();
+
+          clearTimeout(debounceTimer);
+
+          if (!query) {
+            results.style.display = 'none';
+            results.innerHTML = '';
+            return;
+          }
+
+          // Debounce para evitar demasiadas peticiones rápidas
+          debounceTimer = setTimeout(() => {
+            fetch(`/buscar/ajax/?q=${encodeURIComponent(query)}`, {
+              headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            })
+            .then(response => response.json())
+            .then(data => {
+              results.innerHTML = data.html;
+              results.style.display = 'block';
+            })
+            .catch(error => {
+              results.innerHTML = '<p>Error al realizar la búsqueda.</p>';
+              results.style.display = 'block';
+              console.error(error);
+            });
+          }, 300); // Espera 300 ms después de dejar de escribir
+        });
+
+        // Ocultar resultados si se hace clic fuera del contenedor
+        document.addEventListener('click', function (event) {
+          if (!document.querySelector('.search-container').contains(event.target)) {
+            results.style.display = 'none';
+          }
+        });
+      });
+    </script>
     <script src="{% static 'supportinbits/js/global.js' %}"></script>   
-    <script src="{% static 'supportinbits/js/accessibility.js' %}"></script>   
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% comment %} <script src="{% static 'cookie_consent/cookiebar.module.js' %}"></script> {% endcomment %}
 

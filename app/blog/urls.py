@@ -1,9 +1,11 @@
 from django.urls import path, include
 from .views import DetalleEntrada, EntradasPorCategoria, EntradasPorSeccion, ListaEntradasView, EditarEntradaView, EliminarEntradaView
-from .views import crear_entrada, crear_comentario, home_blog, ListaComentariosView, toggle_aprobacion_comentario, eliminar_comentario
+from .views import  buscar_entradas_ajax, crear_entrada, crear_comentario, home_blog, ListaComentariosView, toggle_aprobacion_comentario, eliminar_comentario
 
 urlpatterns = [
     path('', home_blog, name='home_blog'),
+    # path('buscar/', buscar_entradas, name='buscar_entradas'),
+    
     # comentarios admin
     path('entradas-admin/', ListaEntradasView.as_view(), name='lista_entradas_admin'),
     path('comentarios-admin/', ListaComentariosView.as_view(), name='lista_comentarios'),

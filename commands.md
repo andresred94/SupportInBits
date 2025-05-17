@@ -65,7 +65,11 @@
 > `User = get_user_model()`\
 > `users = User.objects.all()`\
 > `pip install mysqlclient` instala el cliente de mysql
-> `python manage.py load_initial_data` carga datos del archivo 
+> `python manage.py load_initial_data` carga datos del archivo\
+> `pip install django-allauth` para instalar OAuth2.0 y usar la cuenta de google\
+> `pip install django-tinymce` 
+> `python -m pip install requests` 
+
 ---
 
 ### comandos de ubuntu server

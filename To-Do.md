@@ -1,31 +1,36 @@
-# version 0.0.2
+# version 0.0.4
 
 **cada 100 tareas hechas aumenta en 1 el segundo dígito de la versión**
 
-- [ ] **implementar la conexión con la base de datos en AWS**
-- [ ] **buscar la manera de implementar TinyMCE para crear las entradas**
-- [ ] API de google maps para crear mapa interactivo indicando rampas de accesibilidad
-- [ ] arreglar las cookies cada vez que se muestra otra vista
-- [ ] implementar la API de Google Analytics
-- [ ] implementar la API de Google Maps
 - [ ] utilizar CDN para las imagenes
-- [ ] crear un botón para el menú de accesibilidad
-- [ ] Implementar la libreria de Leaflet
-- [ ] **crear las plantillas accesibles**
-- [ ] **modo oscuro/claro**
-- [ ] agregar botón para subir a la parte superior de la página
-- [ ] añadir a la home las FAQ
-- [ ] probar el funcionamiento de vista de error 403
-- [ ] habilitar barra de búsqueda
-- [ ] editar y eliminar comentarios rol administrador
-- [ ] editar y eliminar comentarios rol registrado
+- [ ] 2-)**crear las plantillas accesibles**
+- [ ] 3-)**modo oscuro/claro**
 - [ ] sistema de recuperación de contraseña
-- [ ] **vistas por sección**
-- [ ] **vistas por categoríoa**
-- [ ] **compartiendo arte**
-    - [ ] artistas
-    - [ ] libros
-    - [ ] música
+
+--- 
+
+- [x] ~~agregar botón para subir a la parte superior de la página~~
+- [x] ~~habilitar barra de búsqueda~~
+- [x] ~~colocar title a la URL /blog/entradas-admin/~~
+
+--- 40
+
+- [x] ~~colocar title a la URL /blog/entradas/nueva/~~
+- [x] ~~crear un botón para el menú de accesibilidad~~
+- [x] ~~editar y eliminar comentarios rol registrado~~
+- [x] ~~editar y eliminar comentarios rol administrador~~
+- [x] ~~/blog/entradas-admin/ --> arreglar col Acciones.~~
+- [x] ~~/blog/compartiendo-arte/ --> 404 blog/ <slug:slug>/ [name='detalle_entrada'] The current path, blog/~~
+    ~~compartiendo-arte/, matched the last one.~~
+- [x] ~~probar el funcionamiento de vista de error 403~~
+- [x] **~~vistas por sección~~**
+- [x] **~~vistas por categoría~~**
+
+--- 30
+
+- [x] ~~crear, eliminar y editar entradas~~
+- [x] ~~panel de administración de las entradas~~
+- [x] ~~buscar la manera de implementar TinyMCE para crear las entradas~~
 - [x] ~~mostrar los comentarios del usuario en su perfil~~
 - [x] ~~arreglar titulo de cada página~~
 - [x] ~~mostrar comentarios dependiendo de si están o no aprobados~~
