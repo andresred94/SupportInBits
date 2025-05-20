@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.exceptions import PermissionDenied
 from django.contrib import messages
+from django.http import JsonResponse
 from blog.models import Entrada, Comentario, Seccion, Categoria
 from blog.forms import ComentarioForm
 from page.models import Page
@@ -16,9 +17,18 @@ from .models import Usuario
 # from rest_framework import viewsets
 
 
+def check_username(request):
+    username = request.GET.get('username', '')
+    exists = Usuario.objects.filter(username__iexact=username).exists()
+    return JsonResponse({'available': not exists})
+
+def check_email(request):
+    email = request.GET.get('email', '')
+    exists = Usuario.objects.filter(email__iexact=email).exists()
+    return JsonResponse({'available': not exists})
+
 
 # Vista de registro
-
 def registro(request):
     pagina = Page.objects.get(id=9)
     if request.method == 'POST':
@@ -93,7 +103,6 @@ def user_login(request):
 
 @login_required
 def perfil_registrado(request):
-    User = get_user_model()
     pagina = Page.objects.get(id=10)
 
     usuario = request.user     
@@ -107,12 +116,14 @@ def perfil_registrado(request):
     ).select_related('entrada').order_by('-fecha_creacion')
     
     context = {
-        'usuario_perfil': usuario,
+        'user': usuario,
         'comentarios': comentarios,
         'page': pagina,
         'total_comentarios': comentarios.count()
     }
-    
+    # debug
+    # print(f"Usuario es superuser?: {request.user.is_superuser}")
+
     return render(
         request, 
         'user/perfil_registrado.html', 
@@ -137,11 +148,22 @@ def perfil_admin(request):
     if not request.user.is_superuser:
         raise PermissionDenied
     pagina = Page.objects.get(id=10)
+    usuario = request.user   
+    # debug
+    # print(f"Usuario es superuser?: {request.user.is_superuser}")
+    if not request.user.is_superuser:
+        print(f"DEBUG - Usuario NO es superuser: {request.user}")  # Debug
+        raise PermissionDenied
+    else:
+        print(f"DEBUG - Usuario SÍ es superuser: {request.user}")  # Debug
     return render(
             request,
-            'user/perfil_admin.html', {
+            'user/perfil_admin.html', 
+            context = {
             'page': pagina,
-        })
+            'user': usuario,
+            'is_admin' : True        
+    })
 
 # Vista de logout
 @login_required

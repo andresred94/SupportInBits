@@ -189,7 +189,7 @@ body {
   /* Estilo del botón principal */
   #accessibility-btn {
     position: fixed;
-    bottom: 700px;
+    bottom: 60vh;
     right: 0px;
     width: 60px;
     height: 60px;
@@ -205,8 +205,8 @@ body {
   /* Panel de opciones */
   #accessibility-panel {
     position: fixed;
-    bottom: 500px;
-    right: 20px;
+    bottom: 25vh;
+    right: 5%;
     background: white;
     padding: 15px;
     border-radius: 8px;

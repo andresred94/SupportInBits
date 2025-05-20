@@ -3,7 +3,10 @@ from blog.models import Entrada  # Ajusta el import según tu app
 
 def breadcrumbs(request):
     breadcrumbs = [{'name': 'Inicio', 'url': '/'}]
-    
+    context = {
+        'breadcrumbs': breadcrumbs,
+        'user': request.user  # Esto podría ayudar
+    }
     try:
         resolved = resolve(request.path_info)
         url_name = resolved.url_name
@@ -54,4 +57,4 @@ def breadcrumbs(request):
     except Resolver404:
         pass
 
-    return {'breadcrumbs': breadcrumbs}
+    return context

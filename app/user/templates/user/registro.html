@@ -22,7 +22,7 @@
                     
                     <div class="row g-3">
                         <!-- Username -->
-                        <div class="col-sm-6 col-md-12">
+                        <div class="col-sm-12 col-md-12">
                             <div class="form-floating mb-3">
                                 <input type="text" 
                                        name="username" 
@@ -39,12 +39,11 @@
                                     {% endfor %}
                                 </div>
                                 {% endif %}
-                                <div class="form-text">Requerido. mínimo 8 caracteres. Letras, dígitos y @/./+/-/_ solamente.</div>
                             </div>
                         </div>
                         
                         <!-- Email -->
-                        <div class="col-sm-6 col-md-12">
+                        <div class="col-sm-12 col-md-12">
                             <div class="form-floating mb-3">
                                 <input type="email" 
                                        name="email" 
@@ -65,7 +64,7 @@
                         </div>
                         
                         <!-- Password1 -->
-                        <div class="col-sm-6 col-md-12">
+                        <div class="col-sm-12 col-md-12">
                             <div class="form-floating mb-3">
                                 <input type="password" 
                                        name="password1" 
@@ -81,21 +80,11 @@
                                     {% endfor %}
                                 </div>
                                 {% endif %}
-                                <div class="form-text">
-                                    <small>
-                                        <ul class="ps-3">
-                                            <li>No puede ser similar a tu otra información personal.</li>
-                                            <li>Debe contener al menos 8 caracteres.</li>
-                                            <li>No puede ser una contraseña común.</li>
-                                            <li>No puede ser enteramente numérica.</li>
-                                        </ul>
-                                    </small>
-                                </div>
                             </div>
                         </div>
                         
                         <!-- Password2 -->
-                        <div class="col-sm-6 col-md-12">
+                        <div class="col-sm-12 col-md-12">
                             <div class="form-floating mb-3">
                                 <input type="password" 
                                        name="password2" 
@@ -111,7 +100,6 @@
                                     {% endfor %}
                                 </div>
                                 {% endif %}
-                                <div class="form-text">Introduce la misma contraseña que antes, para verificación.</div>
                             </div>
                         </div>
                     </div>

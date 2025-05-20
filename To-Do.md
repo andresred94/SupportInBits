@@ -9,6 +9,7 @@
 
 --- 
 
+- [x] ~~arreglar barra desplegable del menu~~
 - [x] ~~agregar botón para subir a la parte superior de la página~~
 - [x] ~~habilitar barra de búsqueda~~
 - [x] ~~colocar title a la URL /blog/entradas-admin/~~

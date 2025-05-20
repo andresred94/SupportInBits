@@ -196,3 +196,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework_datatables.pagination.DatatablesPageNumberPagination',
     'PAGE_SIZE': 50,
 }
+
+# Configuración para reportes de accesibilidad
+ACCESSIBILITY_REPORTS_DIR = os.path.join(BASE_DIR, 'accessibility_reports')
+os.makedirs(ACCESSIBILITY_REPORTS_DIR, exist_ok=True)

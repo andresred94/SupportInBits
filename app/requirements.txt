@@ -6,3 +6,6 @@ django_allauth===65.8.0
 django_tinymce
 django-cryptography
 pyjwt
+axe-selenium-python
+reportlab
+django-storages
