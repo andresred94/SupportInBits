@@ -29,6 +29,7 @@ urlpatterns = [
     # validaciones de campos
     path('check-username/', views.check_username, name='check_username'),
     path('check-email/', views.check_email, name='check_email'),
+    path('check-superuser/', views.check_superuser, name='check-superuser'),
     # Comentarios
     # path('entradas/<slug:slug>/comentar/', views.crear_comentario, name='crear_comentario'),
     # path('comentarios/', views.gestion_comentarios, name='gestion_comentarios'),

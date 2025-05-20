@@ -9,3 +9,4 @@ pyjwt
 axe-selenium-python
 reportlab
 django-storages
+pillow

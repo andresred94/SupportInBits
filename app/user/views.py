@@ -164,7 +164,11 @@ def perfil_admin(request):
             'user': usuario,
             'is_admin' : True        
     })
-
+def check_superuser(request):
+    return JsonResponse({
+        'is_superuser': request.user.is_superuser
+    })
+    
 # Vista de logout
 @login_required
 def logout_view(request):

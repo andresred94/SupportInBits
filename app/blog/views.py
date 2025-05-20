@@ -37,14 +37,14 @@ class MisComentariosView(ListView):
 @rol_requerido('administrador')
 def crear_entrada(request):
     if request.method == 'POST':
-        #form = EntradaForm(request.POST, request.FILES, user=request.user)
+
         form = EntradaForm(request.POST, request.FILES)
         if form.is_valid():
             entrada = form.save()
             messages.success(request, f'Entrada "{entrada.titulo}" creada exitosamente!')
             return redirect(entrada.get_absolute_url())
     else:
-        # form = EntradaForm(user=request.user)
+
         form = EntradaForm()
     
     return render(request, 'blog/crear_entrada.html', {'form': form})
@@ -212,19 +212,6 @@ def home_blog(request):
         }
     )
 
-""" def buscar_entradas(request):
-    consulta = request.GET.get('q', '')
-    resultados = Entrada.objects.filter(
-        Q(titulo__icontains=consulta) |
-        Q(contenido__icontains=consulta),
-        publicado=True
-    )
-    return render(
-        request, 'blog/resultados_busqueda.html', {
-        'consulta': consulta,
-        'resultados': resultados
-    }) """
-
 def buscar_entradas_ajax(request):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         consulta = request.GET.get('q', '')
@@ -295,6 +282,7 @@ class DetalleEntrada(DetailView):
         context['page'].titulo = self.object.meta_titulo
         context['page'].m_descri = self.object.meta_descripcion
         context['page'].m_robots = self.object.meta_robots
+        
         
         # Comentarios (solo aprobados o del usuario actual)
         # Obtener solo comentarios aprobados para el conteo

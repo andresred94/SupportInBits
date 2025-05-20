@@ -200,3 +200,7 @@ REST_FRAMEWORK = {
 # Configuración para reportes de accesibilidad
 ACCESSIBILITY_REPORTS_DIR = os.path.join(BASE_DIR, 'accessibility_reports')
 os.makedirs(ACCESSIBILITY_REPORTS_DIR, exist_ok=True)
+
+# Configuración para archivos multimedia
+MEDIA_URL = '/media/'  # URL base para servir archivos multimedia
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Ruta donde se almacenarán los archivos

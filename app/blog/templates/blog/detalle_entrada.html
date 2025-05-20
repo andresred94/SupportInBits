@@ -6,11 +6,16 @@
     <header class="mb-4">
         <h1>{{ entrada.titulo }}</h1>
         <p class="text-muted">
-            {% comment %} Publicado por {{ entrada.autor.username }} el {{ entrada.fecha_publicacion|date:"d/m/Y" }} {% endcomment %}
+            
             Publicado el {{ entrada.fecha_publicacion|date:"d/m/Y" }}
         </p>
         {% if entrada.imagen_portada %}
-        <img src="{{ entrada.imagen_portada.url }}" alt="{{ entrada.titulo }}" class="img-fluid rounded mb-3">
+           <div class="d-flex justify-content-center">
+                <img src="{{ entrada.imagen_portada.url }}" 
+                alt="{{ entrada.titulo }}" 
+                class="img-fluid rounded md-3 shadow-lg m-auto"
+                style="max-height: 500px; width: auto; object-fit: cover;">
+           </div>
         {% endif %}
     </header>
     

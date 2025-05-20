@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from blog.views import buscar_entradas_ajax
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # path('admin/', perfil_admin, name="perfil_admin"),
@@ -29,3 +31,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('buscar/ajax/', buscar_entradas_ajax, name='buscar_entradas_ajax'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

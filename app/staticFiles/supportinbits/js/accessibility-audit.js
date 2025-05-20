@@ -1,6 +1,14 @@
 // static/js/accessibility-audit-enhanced.js
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+
+    const response = await fetch('/check-superuser/');
+    const data = await response.json();
+        
+    if (!data.is_superuser) {
+        return;  // No hacer nada si no es superusuario
+    }
     // Estilos CSS para la visualización de errores
     const style = document.createElement('style');
     style.textContent = `
@@ -288,5 +296,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error al generar PDF:', error);
             throw error;
         }
+    }
+    } catch (error) {
+        console.error('Error verificando usuario:', error);
     }
 });
